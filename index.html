@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SILVOL — Digital Skills & AI Readiness Ecosystem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --navy:    #0d1f35;
+      --navy2:   #132840;
+      --teal:    #1aaf8e;
+      --teal2:   #13d4ab;
+      --amber:   #f5a623;
+      --cream:   #f9f5ee;
+      --cream2:  #f0ebe1;
+      --slate:   #8fa3b8;
+      --white:   #ffffff;
+      --text:    #0d1f35;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 24px;
+      --r-xl: 48px;
+
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── UTILITIES ──────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(26,175,142,0.12);
+      color: var(--teal);
+    }
+    .tag--amber { background: rgba(245,166,35,0.12); color: var(--amber); }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    nav.scrolled {
+      background: rgba(13,31,53,0.97);
+      box-shadow: 0 2px 40px rgba(0,0,0,0.25);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 26px;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .logo span { color: var(--teal2); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: var(--r-sm);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white) !important;
+      padding: 10px 22px !important;
+      border-radius: var(--r-sm) !important;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--teal2) !important; transform: translateY(-1px); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(26,175,142,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(245,166,35,0.08) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+    .hero-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hero-content { animation: fadeUp 0.9s var(--ease) both; }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-line {
+      width: 40px; height: 2px;
+      background: var(--teal);
+    }
+    .hero-eyebrow-text {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal2);
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 68px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--teal2);
+    }
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s var(--ease);
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(26,175,142,0.4); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); }
+
+    .hero-visual {
+      animation: fadeUp 0.9s 0.2s var(--ease) both;
+    }
+    .hero-stat-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r-md);
+      padding: 28px 24px;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(26,175,142,0.4); background: rgba(26,175,142,0.06); }
+    .stat-card:nth-child(2) { margin-top: 24px; }
+    .stat-card:nth-child(4) { margin-top: -24px; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-num span { color: var(--teal2); }
+    .stat-label { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+    /* ─── MISSION STRIP ──────────────────────────────────── */
+    .mission-strip {
+      background: var(--teal);
+      padding: 28px 0;
+      overflow: hidden;
+    }
+    .mission-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .mission-strip p {
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      max-width: 780px;
+      line-height: 1.6;
+    }
+    .mission-strip strong { color: var(--white); font-weight: 700; }
+
+    /* ─── WHO WE SERVE ───────────────────────────────────── */
+    .serve {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .section-header { margin-bottom: 60px; }
+    .section-header .tag { margin-bottom: 16px; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: #4a6078;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .audience-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: var(--r-lg);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s;
+    }
+    .audience-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s var(--ease);
+    }
+    .audience-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(13,31,53,0.12); border-color: rgba(26,175,142,0.2); }
+    .audience-card:hover::before { transform: scaleX(1); }
+    .audience-icon {
+      width: 56px; height: 56px;
+      background: rgba(26,175,142,0.1);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .audience-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .audience-desc { font-size: 14px; color: #5a7490; line-height: 1.7; }
+
+    /* ─── PROGRAMMES ─────────────────────────────────────── */
+    .programmes {
+      padding: 100px 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .programmes::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,175,142,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .programmes .section-title { color: var(--white); }
+    .programmes .section-sub { color: rgba(255,255,255,0.55); }
+    .programmes .tag { background: rgba(26,175,142,0.15); }
+    .prog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .prog-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.35s var(--ease);
+    }
+    .prog-card:hover {
+      background: rgba(26,175,142,0.08);
+      border-color: rgba(26,175,142,0.35);
+      transform: translateY(-4px);
+    }
+    .prog-accent {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal2);
+      margin-bottom: 8px;
+    }
+    .prog-name {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .prog-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 28px; }
+    .prog-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .prog-tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .prog-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .prog-card:hover .prog-link { gap: 10px; }
+    .prog-card--soon { opacity: 0.55; }
+    .prog-card--soon::after {
+      content: 'Coming Soon';
+      position: absolute;
+      top: 18px; right: 18px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: rgba(245,166,35,0.15);
+      color: var(--amber);
+      border-radius: 100px;
+      border: 1px solid rgba(245,166,35,0.2);
+    }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────── */
+    .how {
+      padding: 100px 0;
+      background: var(--cream2);
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex;
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      transition: padding-left 0.3s var(--ease);
+      cursor: default;
+    }
+    .step:last-child { border-bottom: none; }
+    .step:hover { padding-left: 8px; }
+    .step-num {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .step:hover .step-num { background: var(--teal); }
+    .step-body {}
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .step-desc { font-size: 14px; color: #5a7490; line-height: 1.7; }
+    .how-visual {
+      background: var(--navy);
+      border-radius: var(--r-xl);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .how-visual::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,175,142,0.2) 0%, transparent 70%);
+    }
+    .how-visual-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .how-visual-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 36px; }
+    .how-pathway {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pathway-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-md);
+      padding: 16px 20px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .pathway-item:hover { border-color: rgba(26,175,142,0.3); background: rgba(26,175,142,0.06); }
+    .pathway-icon { font-size: 22px; }
+    .pathway-label { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.8); }
+    .pathway-badge {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(26,175,142,0.15);
+      color: var(--teal2);
+      border: 1px solid rgba(26,175,142,0.2);
+    }
+    .pathway-badge--amber {
+      background: rgba(245,166,35,0.12);
+      color: var(--amber);
+      border-color: rgba(245,166,35,0.2);
+    }
+
+    /* ─── FUNDING NARRATIVE ──────────────────────────────── */
+    .funding {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .funding-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .funding-quote {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--navy);
+      border-left: 3px solid var(--teal);
+      padding-left: 32px;
+      margin-bottom: 32px;
+    }
+    .funding-quote strong { font-weight: 700; font-style: normal; }
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .outcome-card {
+      background: var(--cream);
+      border-radius: var(--r-md);
+      padding: 24px 20px;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .outcome-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+    .outcome-icon { font-size: 28px; margin-bottom: 10px; }
+    .outcome-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .outcome-items { font-size: 12px; color: #6a839a; line-height: 1.8; }
+
+    /* ─── IMPACT ─────────────────────────────────────────── */
+    .impact {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--navy) 0%, #0a2a45 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .impact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .impact-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .impact-cell {
+      background: var(--navy);
+      padding: 48px 32px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .impact-cell:hover { background: rgba(26,175,142,0.1); }
+    .impact-num {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .impact-num sup { font-size: 0.5em; color: var(--teal2); vertical-align: super; }
+    .impact-label { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+    /* ─── FOR ORGANISATIONS ──────────────────────────────── */
+    .orgs {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .orgs-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .org-cards { display: flex; flex-direction: column; gap: 16px; }
+    .org-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: var(--r-md);
+      padding: 24px 28px;
+      transition: all 0.3s var(--ease);
+    }
+    .org-card:hover { box-shadow: 0 10px 40px rgba(13,31,53,0.1); transform: translateX(6px); border-left: 3px solid var(--teal); }
+    .org-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      background: rgba(26,175,142,0.1);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .org-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .org-desc { font-size: 13px; color: #5a7490; line-height: 1.65; }
+
+    /* ─── CTA BANNER ─────────────────────────────────────── */
+    .cta-banner {
+      padding: 100px 0;
+      background: var(--teal);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.06);
+    }
+    .cta-inner {
+      position: relative;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 44px;
+    }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: var(--white);
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      padding: 64px 0 36px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo { margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 260px; }
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 14px; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--teal2); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-badges { display: flex; gap: 10px; }
+    .footer-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner, .how-grid, .funding-inner, .orgs-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .audience-grid { grid-template-columns: 1fr 1fr; }
+      .prog-grid { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .audience-grid, .prog-grid, .outcomes-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────── -->
+
+  <nav id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="logo">SIL<span>VOL</span></a>
+        <ul class="nav-links">
+          <li><a href="#programmes">Programmes</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#organisations">For Organisations</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="/accounts/login/" class="nav-cta">Start Learning →</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-line"></div>
+            <span class="hero-eyebrow-text">Digital Skills &amp; AI Readiness Ecosystem</span>
+          </div>
+          <h1 class="hero-headline">
+            Future-proof your <em>digital confidence.</em>
+          </h1>
+          <p class="hero-sub">
+            SILVOL equips individuals, communities, and small businesses with
+            the practical digital and AI skills needed to thrive in today's
+            rapidly changing workforce and economy.
+          </p>
+          <div class="hero-actions">
+            <a href="/accounts/signup/" class="btn btn-primary">Start Learning Free →</a>
+            <a href="#programmes" class="btn btn-ghost">Explore Programmes</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-stat-cards">
+            <div class="stat-card">
+              <div class="stat-num">5<span>+</span></div>
+              <div class="stat-label">Learning programmes across digital skills &amp; AI readiness</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num"><span>∞</span></div>
+              <div class="stat-label">Flexible pathways — self-paced, tutor-led, or community-based</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">7<span>+</span></div>
+              <div class="stat-label">Audience groups served from seniors to entrepreneurs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">AI<span>✓</span></div>
+              <div class="stat-label">Human-centred AI literacy for everyday work and life</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MISSION STRIP ─────────────────────────────────────── -->
+
+  <div class="mission-strip">
+    <div class="container">
+      <div class="mission-strip-inner">
+        <p>
+          <strong>Our mission:</strong> To empower people of all ages and backgrounds to
+          confidently participate in the modern digital world and future AI-enabled economy —
+          through <strong>accessible, practical, community-rooted learning.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHO WE SERVE ──────────────────────────────────────── -->
+
+  <section class="serve">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Who We Serve</span>
+        <h2 class="section-title">Learning that meets<br>you where you are</h2>
+        <p class="section-sub">Whether you're just getting started with technology or ready to upskill for a career transition, SILVOL has a pathway for you.</p>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <div class="audience-icon">👴</div>
+          <div class="audience-name">Seniors &amp; Older Adults</div>
+          <div class="audience-desc">Guided digital support, one-to-one mentoring, and confidence-building sessions for everyday technology use.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">🧑‍💼</div>
+          <div class="audience-name">Working Adults</div>
+          <div class="audience-desc">Practical digital and AI skills to improve employability, productivity, and career progression.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">🔄</div>
+          <div class="audience-name">Career Changers</div>
+          <div class="audience-desc">Reskilling and AI-readiness pathways to support transitions into digital and tech-adjacent roles.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">🌍</div>
+          <div class="audience-name">Underserved Communities</div>
+          <div class="audience-desc">Community-based, accessible learning that bridges the digital divide and builds lasting confidence.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">💡</div>
+          <div class="audience-name">Entrepreneurs</div>
+          <div class="audience-desc">Digital business skills, AI tools, and content creation knowledge to launch and grow with confidence.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">🏢</div>
+          <div class="audience-name">Small Businesses</div>
+          <div class="audience-desc">Accessible AI and digital transformation support tailored to the real needs of growing SMEs.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROGRAMMES ────────────────────────────────────────── -->
+
+  <section class="programmes" id="programmes">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Our Programmes</span>
+        <h2 class="section-title">Five arms.<br>One ecosystem.</h2>
+        <p class="section-sub">Each SILVOL programme is designed to work together — so learners can move between community support, skills learning, and AI readiness at their own pace.</p>
+      </div>
+      <div class="prog-grid">
+
+```
+    <div class="prog-card reveal">
+      <div class="prog-accent">SILVOL CONNECT</div>
+      <div class="prog-name">Digital Confidence &amp; Community Support</div>
+      <div class="prog-desc">Volunteer matching, peer mentoring, and guided digital support sessions for those who need a helping hand with everyday technology.</div>
+      <div class="prog-tags">
+        <span class="prog-tag">Seniors</span>
+        <span class="prog-tag">Volunteer Matching</span>
+        <span class="prog-tag">Online Safety</span>
+        <span class="prog-tag">Daily Digital Skills</span>
+      </div>
+      <a href="/users/" class="prog-link">Explore CONNECT →</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-accent">SILVOL LEARN</div>
+      <div class="prog-name">Digital Skills &amp; AI Learning Platform</div>
+      <div class="prog-desc">Accessible online courses and structured learning pathways covering digital skills, AI tools, content creation, and employability.</div>
+      <div class="prog-tags">
+        <span class="prog-tag">Online Courses</span>
+        <span class="prog-tag">AI Literacy</span>
+        <span class="prog-tag">Employability</span>
+        <span class="prog-tag">Self-Paced</span>
+      </div>
+      <a href="#" class="prog-link">Explore LEARN →</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-accent">SILVOL AI</div>
+      <div class="prog-name">Practical AI Literacy &amp; AI Readiness</div>
+      <div class="prog-desc">Human-centred AI learning for everyday people. Build real confidence with AI tools, safe AI use, and AI-assisted productivity skills.</div>
+      <div class="prog-tags">
+        <span class="prog-tag">AI Basics</span>
+        <span class="prog-tag">Safe AI Use</span>
+        <span class="prog-tag">AI for Work</span>
+        <span class="prog-tag">AI Confidence</span>
+      </div>
+      <a href="#" class="prog-link">Explore SILVOL AI →</a>
+    </div>
+
+    <div class="prog-card prog-card--soon reveal">
+      <div class="prog-accent">SILVOL FUTURES</div>
+      <div class="prog-name">Flexible Learning for Young People</div>
+      <div class="prog-desc">Supportive digital learning experiences designed for young people outside mainstream settings, including EBSA learners.</div>
+      <div class="prog-tags">
+        <span class="prog-tag">Young People</span>
+        <span class="prog-tag">Alternative Provision</span>
+        <span class="prog-tag">Flexible Pathways</span>
+      </div>
+      <span class="prog-link" style="opacity:0.4">Coming in Phase 4</span>
+    </div>
+
+    <div class="prog-card prog-card--soon reveal">
+      <div class="prog-accent">SILVOL HUBS</div>
+      <div class="prog-name">Community Learning Infrastructure</div>
+      <div class="prog-desc">Blended online and in-person learning delivered through libraries, community centres, and local partnerships across the region.</div>
+      <div class="prog-tags">
+        <span class="prog-tag">Community Centres</span>
+        <span class="prog-tag">Libraries</span>
+        <span class="prog-tag">Local Workshops</span>
+      </div>
+      <span class="prog-link" style="opacity:0.4">Long-term vision</span>
+    </div>
+
+    <!-- Phase callout card -->
+    <div class="prog-card reveal" style="background: rgba(245,166,35,0.06); border-color: rgba(245,166,35,0.2);">
+      <div class="prog-accent" style="color: var(--amber)">NOW LAUNCHING</div>
+      <div class="prog-name" style="font-size:20px">Phase 1: Foundation Pilot</div>
+      <div class="prog-desc">Digital &amp; AI Confidence for Adults &amp; Seniors — a small cohort pilot with workshops, AI literacy sessions, and community support.</div>
+      <div class="prog-tags">
+        <span class="prog-tag" style="background: rgba(245,166,35,0.12); color: var(--amber); border-color: rgba(245,166,35,0.2)">Live Now</span>
+      </div>
+      <a href="/accounts/signup/" class="prog-link" style="color: var(--amber)">Join the pilot →</a>
+    </div>
+
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- ── HOW IT WORKS ──────────────────────────────────────── -->
+
+  <section class="how" id="how">
+    <div class="container">
+      <div class="how-grid">
+        <div class="reveal">
+          <div class="section-header" style="margin-bottom:0">
+            <span class="tag">How It Works</span>
+            <h2 class="section-title">Simple steps to start learning</h2>
+            <p class="section-sub" style="margin-bottom:40px">No previous experience needed. No jargon. Just practical, supportive learning at your own pace.</p>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <div class="step-title">Create your free account</div>
+                <div class="step-desc">Sign up in minutes. Tell us a little about where you're starting from and what you'd like to achieve.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <div class="step-title">Choose your learning pathway</div>
+                <div class="step-desc">Browse programmes across digital confidence, AI literacy, employability, and more. Filter by level, format, and pace.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <div class="step-title">Learn with support</div>
+                <div class="step-desc">Access self-paced courses, tutor-led sessions, workshops, and — if you need it — one-to-one volunteer mentoring.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <div class="step-title">Track your progress</div>
+                <div class="step-desc">Your personal dashboard shows completed learning, achievements, and recommended next steps — at a glance.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="how-visual reveal">
+          <div class="how-visual-title">Learning Pathways</div>
+          <div class="how-visual-sub">Available programmes — phase one and beyond</div>
+          <div class="how-pathway">
+            <div class="pathway-item">
+              <span class="pathway-icon">🖥️</span>
+              <span class="pathway-label">Digital Confidence Basics</span>
+              <span class="pathway-badge">Live</span>
+            </div>
+            <div class="pathway-item">
+              <span class="pathway-icon">🤝</span>
+              <span class="pathway-label">Volunteer Support Matching</span>
+              <span class="pathway-badge">Live</span>
+            </div>
+            <div class="pathway-item">
+              <span class="pathway-icon">🤖</span>
+              <span class="pathway-label">AI Literacy for Everyday Work</span>
+              <span class="pathway-badge">Live</span>
+            </div>
+            <div class="pathway-item">
+              <span class="pathway-icon">📱</span>
+              <span class="pathway-label">Digital Skills Pathways</span>
+              <span class="pathway-badge amber">Coming Soon</span>
+            </div>
+            <div class="pathway-item">
+              <span class="pathway-icon">💼</span>
+              <span class="pathway-label">Employability &amp; Career Transitions</span>
+              <span class="pathway-badge--amber pathway-badge">Phase 2</span>
+            </div>
+            <div class="pathway-item">
+              <span class="pathway-icon">🚀</span>
+              <span class="pathway-label">Digital Entrepreneurship</span>
+              <span class="pathway-badge--amber pathway-badge">Phase 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FUNDING NARRATIVE ─────────────────────────────────── -->
+
+  <section class="funding" id="impact-narrative">
+    <div class="container">
+      <div class="funding-inner">
+        <div class="reveal">
+          <span class="tag" style="margin-bottom:20px;display:inline-block">Our Impact Goals</span>
+          <blockquote class="funding-quote">
+            "SILVOL equips individuals with the <strong>practical digital and AI skills</strong>
+            needed to participate confidently in the modern workforce and digital economy."
+          </blockquote>
+          <p style="font-size:15px;color:#5a7490;line-height:1.8;margin-bottom:28px">
+            Through accessible, industry-relevant training, we improve employability,
+            support entrepreneurship, reduce digital exclusion, and help future-proof
+            communities against workforce disruption caused by rapid technological change.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <span class="tag">AI Readiness</span>
+            <span class="tag">Digital Inclusion</span>
+            <span class="tag">Workforce Resilience</span>
+            <span class="tag tag--amber">Employability</span>
+            <span class="tag tag--amber">Future Skills</span>
+          </div>
+        </div>
+        <div class="outcomes-grid reveal">
+          <div class="outcome-card">
+            <div class="outcome-icon">💼</div>
+            <div class="outcome-title">Employment Outcomes</div>
+            <div class="outcome-items">Learners gaining jobs<br>Career progression<br>Freelance readiness<br>Increased employability</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-icon">🧠</div>
+            <div class="outcome-title">Skills Development</div>
+            <div class="outcome-items">Digital confidence<br>AI literacy<br>Practical tech capability<br>Industry-relevant skills</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-icon">🌐</div>
+            <div class="outcome-title">Digital Inclusion</div>
+            <div class="outcome-items">Underserved communities<br>Women in tech<br>Adults over 50<br>Career changers</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-icon">📈</div>
+            <div class="outcome-title">Economic Impact</div>
+            <div class="outcome-items">Entrepreneurship<br>SME digital growth<br>Local economic contribution<br>Community empowerment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IMPACT NUMBERS ────────────────────────────────────── -->
+
+  <section class="impact">
+    <div class="container">
+      <div class="impact-grid">
+        <div class="impact-cell">
+          <div class="impact-num">5<sup>+</sup></div>
+          <div class="impact-label">Learning programmes across digital &amp; AI skills</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">3<sup>+</sup></div>
+          <div class="impact-label">Delivery formats — self-paced, tutor-led, community</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">7</div>
+          <div class="impact-label">Distinct audience groups served through the ecosystem</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">10<sup>m</sup></div>
+          <div class="impact-label">Workers the UK government plans to upskill in AI by 2030</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOR ORGANISATIONS ─────────────────────────────────── -->
+
+  <section class="orgs" id="organisations">
+    <div class="container">
+      <div class="orgs-inner">
+        <div class="reveal">
+          <span class="tag" style="margin-bottom:20px;display:inline-block">For Organisations</span>
+          <h2 class="section-title">Partner with SILVOL</h2>
+          <p class="section-sub" style="margin-bottom:36px">We work with councils, employers, community organisations, and funders who share our commitment to reducing digital exclusion and building workforce resilience.</p>
+          <div style="display:flex;gap:16px;flex-wrap:wrap">
+            <a href="#" class="btn btn-primary">Discuss a Partnership →</a>
+            <a href="#" class="btn" style="background:var(--cream2);color:var(--navy);border:1px solid rgba(0,0,0,0.1)">Download Info Pack</a>
+          </div>
+        </div>
+        <div class="org-cards reveal">
+          <div class="org-card">
+            <div class="org-icon">🏛️</div>
+            <div>
+              <div class="org-title">Local Authorities &amp; Councils</div>
+              <div class="org-desc">UKSPF and WMCA-aligned digital inclusion and workforce transformation delivery for your community.</div>
+            </div>
+          </div>
+          <div class="org-card">
+            <div class="org-icon">🏢</div>
+            <div>
+              <div class="org-title">Employers &amp; SMEs</div>
+              <div class="org-desc">Workplace AI readiness and digital upskilling programmes tailored to your team's needs and growth ambitions.</div>
+            </div>
+          </div>
+          <div class="org-card">
+            <div class="org-icon">🤝</div>
+            <div>
+              <div class="org-title">Community Organisations</div>
+              <div class="org-desc">Co-deliver learning programmes and digital support through your existing community infrastructure and networks.</div>
+            </div>
+          </div>
+          <div class="org-card">
+            <div class="org-icon">💰</div>
+            <div>
+              <div class="org-title">Funders &amp; Grant Bodies</div>
+              <div class="org-desc">Outcome-focused, evidenced delivery aligned to current national digital skills and AI readiness funding priorities.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ────────────────────────────────────────── -->
+
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <h2 class="cta-title">Ready to build your digital future?</h2>
+        <p class="cta-sub">
+          Join SILVOL — accessible, practical, and built around real people.
+          Whether you're looking to learn, volunteer, or partner with us, there's a place for you here.
+        </p>
+        <div class="cta-actions">
+          <a href="/accounts/signup/" class="btn btn-white">Create a Free Account →</a>
+          <a href="/accounts/login/" class="btn btn-outline-white">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">SIL<span>VOL</span></div>
+          <p>A human-centred digital learning and community support ecosystem — improving digital confidence, AI readiness, and employability across communities.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Programmes</h4>
+          <ul>
+            <li><a href="#">SILVOL CONNECT</a></li>
+            <li><a href="#">SILVOL LEARN</a></li>
+            <li><a href="#">SILVOL AI</a></li>
+            <li><a href="#">SILVOL FUTURES</a></li>
+            <li><a href="#">SILVOL HUBS</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Organisation</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Approach</a></li>
+            <li><a href="#">Impact</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="/accounts/signup/">Sign Up Free</a></li>
+            <li><a href="/accounts/login/">Login</a></li>
+            <li><a href="#">My Dashboard</a></li>
+            <li><a href="#">Volunteer Area</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 SILVOL. West Midlands, UK. support@silvol.com</p>
+        <div class="footer-badges">
+          <span class="footer-badge">Digital Inclusion</span>
+          <span class="footer-badge">AI Readiness</span>
+          <span class="footer-badge">UKSPF Aligned</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── JS ────────────────────────────────────────────────── -->
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
