@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SILVOL — 2. Public Website Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:       #111318;
+  --ink-2:     #3a3d45;
+  --ink-3:     #6b7080;
+  --ink-4:     #9aa0b0;
+  --rule:      #d4d8e2;
+  --rule-2:    #e8eaf0;
+  --bg:        #f4f5f8;
+  --white:     #ffffff;
+  --accent:    #1a6b3a;
+  --acc-light: #e8f4ed;
+  --acc-mid:   #b8dfc8;
+  --ff-mono: 'IBM Plex Mono', monospace;
+  --ff-sans: 'IBM Plex Sans', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{font-family:var(--ff-sans);color:var(--ink);font-size:13px;line-height:1.5}
+
+/* ── PAGE SHELL ── */
+.page{max-width:1400px;margin:0 auto;padding:48px 40px 80px}
+.doc-header{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:48px}
+.doc-title{font-family:var(--ff-mono);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.doc-sub{font-size:11px;color:var(--ink-3)}
+.doc-badge{display:inline-flex;align-items:center;font-family:var(--ff-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border:1.5px solid var(--rule);border-radius:4px;color:var(--ink-3);margin-top:12px}
+
+/* ── GRID ── */
+.wf-row{display:grid;gap:24px;margin-bottom:28px}
+.cols-5{grid-template-columns:repeat(5,1fr)}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
+.cols-1{grid-template-columns:1fr}
+
+/* ── SECTION WRAPPER ── */
+.wf-section{background:var(--white);border:1.5px solid var(--rule);border-radius:8px;overflow:hidden}
+.wf-section-header{background:var(--ink);padding:9px 16px;display:flex;align-items:center;gap:10px}
+.wf-section-num{font-family:var(--ff-mono);font-size:11px;font-weight:600;color:rgba(255,255,255,.45);min-width:28px}
+.wf-section-title{font-family:var(--ff-mono);font-size:11px;font-weight:600;color:var(--white);letter-spacing:.05em;text-transform:uppercase}
+.wf-body{padding:0}
+
+/* ── SHARED MICRO ATOMS ── */
+.wl{height:7px;background:var(--rule-2);border-radius:4px;margin-bottom:5px}
+.wl.s{width:45%}.wl.m{width:68%}.wl.f{width:100%}.wl.t{width:30%;height:5px}
+.img-ph{background:var(--rule-2);border-radius:4px;position:relative;overflow:hidden}
+.img-ph::before,.img-ph::after{content:'';position:absolute;background:var(--rule);height:1.5px;width:150%;left:-25%}
+.img-ph::before{top:40%;transform:rotate(10deg)}
+.img-ph::after{top:60%;transform:rotate(-10deg)}
+.icon-ph{width:36px;height:36px;background:var(--acc-light);border:1.5px solid var(--acc-mid);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+
+/* ── SHARED NAV (mini) ── */
+.mini-nav{background:var(--white);border-bottom:1px solid var(--rule-2);padding:8px 14px;display:flex;align-items:center;justify-content:space-between}
+.mini-nav.green{background:var(--accent)}
+.mn-logo{font-family:var(--ff-mono);font-size:12px;font-weight:700;color:var(--ink)}
+.mini-nav.green .mn-logo{color:white}
+.mn-links{display:flex;gap:10px}
+.mn-links span{font-size:9px;color:var(--ink-3)}
+.mini-nav.green .mn-links span{color:rgba(255,255,255,.65)}
+.mn-btns{display:flex;gap:5px}
+.mn-btn-o{padding:3px 8px;border:1px solid var(--rule);border-radius:3px;font-size:9px;color:var(--ink-3)}
+.mini-nav.green .mn-btn-o{border-color:rgba(255,255,255,.4);color:white}
+.mn-btn-f{padding:3px 8px;background:var(--accent);border-radius:3px;font-size:9px;color:white;font-weight:600}
+.mini-nav.green .mn-btn-f{background:white;color:var(--accent)}
+
+/* ── SHARED FOOTER (mini) ── */
+.mini-footer{background:var(--ink);padding:12px 14px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:10px}
+.mf-brand{}
+.mf-logo{font-family:var(--ff-mono);font-size:10px;font-weight:700;color:white;margin-bottom:3px}
+.mf-desc{font-size:8px;color:rgba(255,255,255,.4);line-height:1.4;margin-bottom:6px}
+.mf-social{display:flex;gap:4px}
+.mf-icon{width:14px;height:14px;border:1px solid rgba(255,255,255,.2);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px;color:rgba(255,255,255,.4)}
+.mf-col-title{font-size:8px;font-weight:600;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.mf-links{display:flex;flex-direction:column;gap:3px}
+.mf-links span{font-size:8px;color:rgba(255,255,255,.45)}
+.mf-copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.07);padding-top:7px;font-size:7.5px;color:rgba(255,255,255,.2);text-align:center}
+
+/* ── ANNOTATION ── */
+.ann{font-family:var(--ff-mono);font-size:9px;color:var(--accent);background:var(--acc-light);border:1px solid var(--acc-mid);border-radius:3px;padding:2px 7px;display:inline-block;margin:10px 14px 0}
+.note{background:#fffbea;border:1.5px solid #f5d87a;border-radius:5px;padding:9px 12px;font-size:10px;color:#7a5a00;margin:10px 14px;line-height:1.5}
+.note strong{font-weight:700}
+
+/* ══════════════════════════════════════════
+   2.1 HOMEPAGE
+══════════════════════════════════════════ */
+.hp-hero{padding:24px 14px;background:var(--bg);border-bottom:1px solid var(--rule-2);display:grid;grid-template-columns:1fr 100px;gap:14px;align-items:center}
+.hp-hero-h{font-size:17px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:8px}
+.hp-hero-p{font-size:9px;color:var(--ink-3);line-height:1.55;margin-bottom:14px}
+.hp-hero-btns{display:flex;gap:7px}
+.hp-btn-green{padding:6px 14px;background:var(--accent);color:white;font-size:9px;font-weight:600;border-radius:4px}
+.hp-btn-out{padding:5px 14px;background:transparent;color:var(--ink);font-size:9px;border:1px solid var(--rule);border-radius:4px}
+.hp-hero-img{border-radius:5px}./* img placeholder */
+
+.hp-values{padding:16px 14px;border-bottom:1px solid var(--rule-2)}
+.hp-values-title{font-size:9px;font-weight:600;color:var(--ink);text-align:center;margin-bottom:12px}
+.hp-values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.hp-value-item{text-align:center}
+.hp-val-icon{font-size:18px;margin-bottom:5px}
+.hp-val-name{font-size:8.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.hp-val-desc{font-size:8px;color:var(--ink-3);line-height:1.4}
+
+.hp-progs{padding:16px 14px;border-bottom:1px solid var(--rule-2)}
+.hp-progs-title{font-size:10px;font-weight:700;text-align:center;color:var(--ink);margin-bottom:4px}
+.hp-progs-sub{font-size:8px;color:var(--ink-3);text-align:center;margin-bottom:12px}
+.hp-prog-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.hp-prog-card{border:1.5px solid var(--rule);border-radius:6px;padding:8px;text-align:center}
+.hp-prog-icon{font-size:16px;margin-bottom:4px}
+.hp-prog-name{font-size:8px;font-weight:700;color:var(--accent);margin-bottom:3px}
+.hp-prog-desc{font-size:7.5px;color:var(--ink-3);line-height:1.4;margin-bottom:5px}
+.hp-prog-link{font-size:8px;color:var(--accent);font-weight:600}
+
+.hp-how{padding:16px 14px;border-bottom:1px solid var(--rule-2);background:var(--bg)}
+.hp-how-title{font-size:10px;font-weight:700;text-align:center;color:var(--ink);margin-bottom:3px}
+.hp-how-sub{font-size:8px;color:var(--ink-3);text-align:center;margin-bottom:12px}
+.hp-how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.hp-step{text-align:center}
+.hp-step-num{width:24px;height:24px;background:var(--ink);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin:0 auto 6px}
+.hp-step-title{font-size:8.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.hp-step-desc{font-size:8px;color:var(--ink-3);line-height:1.4}
+
+.hp-impact{padding:16px 14px;border-bottom:1px solid var(--rule-2)}
+.hp-impact-title{font-size:10px;font-weight:700;text-align:center;color:var(--ink);margin-bottom:12px}
+.hp-impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.hp-impact-cell{text-align:center;padding:10px;border:1.5px solid var(--rule-2);border-radius:6px;background:var(--bg)}
+.hp-impact-icon{font-size:16px;margin-bottom:4px}
+.hp-impact-num{font-family:var(--ff-mono);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.hp-impact-label{font-size:8px;color:var(--ink-3)}
+
+.hp-cta{padding:16px 14px;text-align:center;background:var(--acc-light);border-bottom:1px solid var(--acc-mid)}
+.hp-cta-title{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.hp-cta-sub{font-size:8.5px;color:var(--ink-3);margin-bottom:12px}
+.hp-cta-btns{display:flex;gap:7px;justify-content:center}
+
+/* ══════════════════════════════════════════
+   2.2 ABOUT PAGE
+══════════════════════════════════════════ */
+.ab-hero{padding:20px 14px;border-bottom:1px solid var(--rule-2);display:grid;grid-template-columns:1fr 90px;gap:14px;align-items:start}
+.ab-tag{font-size:9px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.ab-hero-h{font-size:16px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:8px}
+.ab-hero-p{font-size:9px;color:var(--ink-3);line-height:1.55}
+
+.ab-story{padding:16px 14px;border-bottom:1px solid var(--rule-2);display:grid;grid-template-columns:1fr 90px;gap:14px}
+.ab-story-content{}
+.ab-section-label{font-size:9px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.ab-body-text{font-size:8.5px;color:var(--ink-3);line-height:1.6}
+
+.ab-what{padding:16px 14px;border-bottom:1px solid var(--rule-2);background:var(--bg)}
+.ab-what-p{font-size:8.5px;color:var(--ink-3);text-align:center;margin-bottom:12px}
+.ab-what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ab-what-card{background:var(--white);border:1.5px solid var(--rule);border-radius:6px;padding:10px;text-align:center}
+.ab-what-icon{font-size:20px;margin-bottom:5px}
+.ab-what-title{font-size:9px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.ab-what-desc{font-size:8px;color:var(--ink-3);line-height:1.4}
+
+.ab-values{padding:16px 14px;border-bottom:1px solid var(--rule-2)}
+.ab-values-title{font-size:10px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.ab-values-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ab-val{text-align:center}
+.ab-val-icon{font-size:20px;margin-bottom:4px}
+.ab-val-label{font-size:8.5px;font-weight:700;color:var(--ink)}
+
+.ab-partner-cta{padding:14px;background:var(--acc-light);border-bottom:1px solid var(--acc-mid);text-align:center}
+.ab-partner-title{font-size:10px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.ab-partner-p{font-size:8.5px;color:var(--ink-3);margin-bottom:10px}
+.ab-partner-btn{display:inline-block;padding:7px 16px;background:var(--accent);color:white;font-size:9px;font-weight:600;border-radius:4px}
+
+/* ══════════════════════════════════════════
+   2.3 PROGRAMMES PAGE
+══════════════════════════════════════════ */
+.pg-hero{padding:18px 14px;border-bottom:1px solid var(--rule-2)}
+.pg-tag{font-size:9px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.pg-hero-h{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:6px}
+.pg-hero-p{font-size:8.5px;color:var(--ink-3);line-height:1.55}
+
+.pg-list{padding:10px 14px}
+.pg-prog-block{display:grid;grid-template-columns:70px 1fr;gap:10px;border:1.5px solid var(--rule);border-radius:6px;padding:10px;margin-bottom:8px;align-items:start}
+.pg-prog-block:last-child{margin-bottom:0}
+.pg-prog-name{font-size:9px;font-weight:700;color:var(--accent);margin-bottom:3px}
+.pg-prog-title{font-size:10px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.pg-prog-desc{font-size:8.5px;color:var(--ink-3);line-height:1.5;margin-bottom:5px}
+.pg-learn-more{font-size:8.5px;color:var(--accent);font-weight:600}
+
+.pg-quiz{padding:12px 14px;background:var(--acc-light);border-top:1px solid var(--acc-mid);text-align:center}
+.pg-quiz-title{font-size:10px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.pg-quiz-p{font-size:8.5px;color:var(--ink-3);margin-bottom:8px}
+.pg-quiz-btn{display:inline-block;padding:6px 16px;background:var(--accent);color:white;font-size:9px;font-weight:600;border-radius:4px}
+
+/* ══════════════════════════════════════════
+   2.4 ORGANISATIONS PAGE
+══════════════════════════════════════════ */
+.og-hero{padding:20px 14px;border-bottom:1px solid var(--rule-2);display:grid;grid-template-columns:1fr 90px;gap:14px;align-items:start}
+.og-tag{font-size:9px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.og-hero-h{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:6px}
+.og-hero-p{font-size:8.5px;color:var(--ink-3);line-height:1.55}
+
+.og-how{padding:14px;border-bottom:1px solid var(--rule-2);background:var(--bg)}
+.og-how-title{font-size:10px;font-weight:700;text-align:center;color:var(--ink);margin-bottom:4px}
+.og-how-p{font-size:8.5px;color:var(--ink-3);text-align:center;margin-bottom:10px}
+.og-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.og-how-card{background:var(--white);border:1.5px solid var(--rule);border-radius:6px;padding:10px;text-align:center}
+.og-how-icon{font-size:20px;margin-bottom:5px}
+.og-how-name{font-size:9px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.og-how-desc{font-size:8px;color:var(--ink-3);line-height:1.4}
+
+.og-who{padding:14px;border-bottom:1px solid var(--rule-2)}
+.og-who-title{font-size:10px;font-weight:700;text-align:center;color:var(--ink);margin-bottom:10px}
+.og-who-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.og-who-item{text-align:center;border:1.5px solid var(--rule);border-radius:6px;padding:8px 4px}
+.og-who-icon{font-size:18px;margin-bottom:4px}
+.og-who-label{font-size:7.5px;font-weight:600;color:var(--ink-2)}
+
+.og-benefits{padding:14px;border-bottom:1px solid var(--rule-2);background:var(--bg)}
+.og-ben-title{font-size:10px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.og-ben-list{display:flex;flex-direction:column;gap:6px}
+.og-ben-item{display:flex;align-items:flex-start;gap:7px;font-size:8.5px;color:var(--ink-2)}
+.og-ben-check{color:var(--accent);font-weight:700;font-size:11px;margin-top:1px;flex-shrink:0}
+
+.og-cta{padding:14px;background:var(--acc-light);border-top:1px solid var(--acc-mid);text-align:center}
+.og-cta-title{font-size:10px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.og-cta-p{font-size:8.5px;color:var(--ink-3);margin-bottom:8px}
+.og-cta-btn{display:inline-block;padding:6px 16px;background:var(--accent);color:white;font-size:9px;font-weight:600;border-radius:4px}
+
+/* ══════════════════════════════════════════
+   2.5 CONTACT PAGE
+══════════════════════════════════════════ */
+.ct-hero{padding:16px 14px;border-bottom:1px solid var(--rule-2)}
+.ct-tag{font-size:9px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.ct-hero-h{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.ct-hero-p{font-size:8.5px;color:var(--ink-3);line-height:1.55}
+
+.ct-body{display:grid;grid-template-columns:1fr 100px;gap:14px;padding:14px;border-bottom:1px solid var(--rule-2)}
+.ct-form{}
+.ct-form-title{font-size:10px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.ct-field{margin-bottom:8px}
+.ct-label{font-size:9px;font-weight:600;color:var(--ink-2);margin-bottom:3px;display:block}
+.ct-input{width:100%;border:1.5px solid var(--rule);border-radius:4px;padding:6px 10px;font-size:9px;color:var(--ink-4);background:var(--white);font-family:var(--ff-sans)}
+.ct-select{width:100%;border:1.5px solid var(--rule);border-radius:4px;padding:6px 10px;font-size:9px;color:var(--ink-4);background:var(--white);font-family:var(--ff-sans);appearance:none}
+.ct-textarea{width:100%;border:1.5px solid var(--rule);border-radius:4px;padding:6px 10px;font-size:9px;color:var(--ink-4);background:var(--white);font-family:var(--ff-sans);min-height:52px;resize:none}
+.ct-submit{padding:7px 18px;background:var(--accent);color:white;font-size:10px;font-weight:600;border-radius:4px;border:none;cursor:pointer;width:100%;margin-top:4px}
+
+.ct-info{}
+.ct-info-title{font-size:9px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.ct-info-item{display:flex;align-items:flex-start;gap:7px;margin-bottom:7px}
+.ct-info-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+.ct-info-label{font-size:8px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.ct-info-val{font-size:8px;color:var(--ink-3)}
+.ct-social-title{font-size:9px;font-weight:700;color:var(--ink);margin-bottom:6px;margin-top:10px}
+.ct-social-row{display:flex;gap:5px}
+.ct-soc-icon{width:20px;height:20px;border:1.5px solid var(--rule);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink-3)}
+
+.ct-org-cta{padding:12px 14px;background:var(--bg);border-bottom:1px solid var(--rule-2);text-align:center}
+.ct-org-title{font-size:9.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.ct-org-p{font-size:8px;color:var(--ink-3);margin-bottom:7px}
+.ct-org-btn{display:inline-block;padding:5px 14px;background:transparent;color:var(--ink);font-size:8.5px;font-weight:600;border:1.5px solid var(--rule);border-radius:4px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- DOC HEADER -->
+  <div class="doc-header">
+    <div class="doc-title">2. PUBLIC WEBSITE WIREFRAMES</div>
+    <div class="doc-sub">Pages people see before logging in</div>
+    <div class="doc-badge">SILVOL v1 &nbsp;·&nbsp; Phase 1 &nbsp;·&nbsp; Public-Facing Pages</div>
+  </div>
+
+  <!-- ── ALL 5 PAGES SIDE BY SIDE ── -->
+  <div class="wf-row cols-5">
+
+    <!-- ════════════════════════════
+         2.1 HOMEPAGE
+    ════════════════════════════ -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">2.1</span>
+        <span class="wf-section-title">HOMEPAGE</span>
+      </div>
+      <div class="wf-body">
+        <div class="mini-nav">
+          <div class="mn-logo">SILVOL</div>
+          <div class="mn-links"><span>Home</span><span>Programmes</span><span>About</span><span>Resources</span><span>Partners</span><span>Contact</span></div>
+          <div class="mn-btns"><div class="mn-btn-o">Log In</div><div class="mn-btn-f">Get Started</div></div>
+        </div>
+
+        <!-- Hero -->
+        <div class="hp-hero">
+          <div>
+            <div class="hp-hero-h">Building digital confidence.<br>Creating brighter futures.</div>
+            <div class="hp-hero-p">SILVOL delivers practical digital skills and AI readiness learning through community, education and partnership. We empower people and strengthen communities.</div>
+            <div class="hp-hero-btns">
+              <div class="hp-btn-green">Get Started</div>
+              <div class="hp-btn-out">Explore Programmes</div>
+            </div>
+          </div>
+          <div class="img-ph" style="height:80px"></div>
+        </div>
+
+        <!-- Values strip -->
+        <div class="hp-values">
+          <div class="hp-values-grid">
+            <div class="hp-value-item">
+              <div class="hp-val-icon">⚡</div>
+              <div class="hp-val-name">Practical Learning</div>
+              <div class="hp-val-desc">Real-world digital skills and AI confidence.</div>
+            </div>
+            <div class="hp-value-item">
+              <div class="hp-val-icon">🤝</div>
+              <div class="hp-val-name">Community Focused</div>
+              <div class="hp-val-desc">Delivered in communities that need it most.</div>
+            </div>
+            <div class="hp-value-item">
+              <div class="hp-val-icon">♿</div>
+              <div class="hp-val-name">Inclusive & Accessible</div>
+              <div class="hp-val-desc">For all ages, backgrounds and abilities.</div>
+            </div>
+            <div class="hp-value-item">
+              <div class="hp-val-icon">🚀</div>
+              <div class="hp-val-name">Future Ready</div>
+              <div class="hp-val-desc">Preparing people for work, life and the digital future.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Programmes -->
+        <div class="hp-progs">
+          <div class="hp-progs-title">Our Programmes</div>
+          <div class="hp-progs-sub">Five connected arms working together to support learners, communities and organisations.</div>
+          <div class="hp-prog-row">
+            <div class="hp-prog-card">
+              <div class="hp-prog-icon">🔗</div>
+              <div class="hp-prog-name">SILVOL CONNECT</div>
+              <div class="hp-prog-desc">Digital confidence and community support.</div>
+              <div class="hp-prog-link">Learn more →</div>
+            </div>
+            <div class="hp-prog-card">
+              <div class="hp-prog-icon">📚</div>
+              <div class="hp-prog-name">SILVOL LEARN</div>
+              <div class="hp-prog-desc">Digital skills and learning pathways.</div>
+              <div class="hp-prog-link">Learn more →</div>
+            </div>
+            <div class="hp-prog-card">
+              <div class="hp-prog-icon">🤖</div>
+              <div class="hp-prog-name">SILVOL AI</div>
+              <div class="hp-prog-desc">Practical AI literacy and AI readiness.</div>
+              <div class="hp-prog-link">Learn more →</div>
+            </div>
+            <div class="hp-prog-card">
+              <div class="hp-prog-icon">🌱</div>
+              <div class="hp-prog-name">SILVOL FUTURES</div>
+              <div class="hp-prog-desc">Flexible learning for young people and future talent.</div>
+              <div class="hp-prog-link">Learn more →</div>
+            </div>
+            <div class="hp-prog-card">
+              <div class="hp-prog-icon">🏢</div>
+              <div class="hp-prog-name">SILVOL HUBS</div>
+              <div class="hp-prog-desc">Community learning hubs and blended delivery.</div>
+              <div class="hp-prog-link">Learn more →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="hp-how">
+          <div class="hp-how-title">How It Works</div>
+          <div class="hp-how-sub">Simple steps to start your learning journey.</div>
+          <div class="hp-how-steps">
+            <div class="hp-step">
+              <div class="hp-step-num">1</div>
+              <div class="hp-step-title">Create an account</div>
+              <div class="hp-step-desc">Sign up in minutes and tell us about your goals.</div>
+            </div>
+            <div class="hp-step">
+              <div class="hp-step-num">2</div>
+              <div class="hp-step-title">Choose your path</div>
+              <div class="hp-step-desc">Browse programmes and learning options that suit you.</div>
+            </div>
+            <div class="hp-step">
+              <div class="hp-step-num">3</div>
+              <div class="hp-step-title">Learn and grow</div>
+              <div class="hp-step-desc">Access courses, sessions and support from expert tutors.</div>
+            </div>
+            <div class="hp-step">
+              <div class="hp-step-num">4</div>
+              <div class="hp-step-title">Track your progress</div>
+              <div class="hp-step-desc">See your progress, achievements and next steps.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Impact -->
+        <div class="hp-impact">
+          <div class="hp-impact-title">Our Impact</div>
+          <div class="hp-impact-grid">
+            <div class="hp-impact-cell">
+              <div class="hp-impact-icon">🎓</div>
+              <div class="hp-impact-num">1000+</div>
+              <div class="hp-impact-label">Learners supported</div>
+            </div>
+            <div class="hp-impact-cell">
+              <div class="hp-impact-icon">🌍</div>
+              <div class="hp-impact-num">50+</div>
+              <div class="hp-impact-label">Communities engaged</div>
+            </div>
+            <div class="hp-impact-cell">
+              <div class="hp-impact-icon">🏢</div>
+              <div class="hp-impact-num">25+</div>
+              <div class="hp-impact-label">Partner organisations</div>
+            </div>
+            <div class="hp-impact-cell">
+              <div class="hp-impact-icon">⭐</div>
+              <div class="hp-impact-num">95%</div>
+              <div class="hp-impact-label">Would recommend SILVOL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="hp-cta">
+          <div class="hp-cta-title">Ready to start your journey?</div>
+          <div class="hp-cta-sub">Join thousands of learners building skills and brighter futures.</div>
+          <div class="hp-cta-btns">
+            <div class="hp-btn-green">Get Started</div>
+            <div class="hp-btn-out">Explore Programmes</div>
+          </div>
+        </div>
+
+        <div class="mini-footer">
+          <div class="mf-brand">
+            <div class="mf-logo">SILVOL</div>
+            <div class="mf-desc">Empowering communities through digital skills and AI readiness.</div>
+            <div class="mf-social"><div class="mf-icon">f</div><div class="mf-icon">in</div><div class="mf-icon">▶</div></div>
+          </div>
+          <div><div class="mf-col-title">Explore</div><div class="mf-links"><span>Programmes</span><span>About</span><span>Resources</span><span>News</span></div></div>
+          <div><div class="mf-col-title">Support</div><div class="mf-links"><span>Help Centre</span><span>FAQs</span><span>Accessibility</span><span>Privacy Policy</span></div></div>
+          <div><div class="mf-col-title">Connect</div><div class="mf-links"><span>Partners</span><span>Contact</span></div></div>
+          <div class="mf-copy">© 2025 SILVOL. All rights reserved.</div>
+        </div>
+        <div class="ann">SEO: meta title + description on every page</div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
+         2.2 ABOUT PAGE
+    ════════════════════════════ -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">2.2</span>
+        <span class="wf-section-title">ABOUT PAGE</span>
+      </div>
+      <div class="wf-body">
+        <div class="mini-nav">
+          <div class="mn-logo">SILVOL</div>
+          <div class="mn-links"><span>Home</span><span>Programmes</span><span>About</span><span>Resources</span><span>Partners</span><span>Contact</span></div>
+          <div class="mn-btns"><div class="mn-btn-o">Log In</div><div class="mn-btn-f">Get Started</div></div>
+        </div>
+
+        <!-- Mission Hero -->
+        <div class="ab-hero">
+          <div>
+            <div class="ab-tag">About SILVOL</div>
+            <div class="ab-hero-h">Our mission is simple: empower people through learning and opportunity.</div>
+            <div class="ab-hero-p" style="font-size:9px;color:var(--ink-3);line-height:1.55;margin-top:8px">SILVOL exists to close the digital divide and help people of all ages and backgrounds build the skills and confidence to thrive in a digital world.</div>
+          </div>
+          <div class="img-ph" style="height:90px"></div>
+        </div>
+
+        <!-- Our Story -->
+        <div class="ab-story">
+          <div>
+            <div class="ab-section-label">Our Story</div>
+            <div class="ab-body-text">SILVOL was created in response to a growing need for accessible, practical digital learning in communities across the UK. We bring together education, technology and human support to deliver life-changing impact.</div>
+          </div>
+          <div class="img-ph" style="height:80px"></div>
+        </div>
+
+        <!-- What We Do -->
+        <div class="ab-what">
+          <div class="ab-section-label" style="text-align:center;margin-bottom:4px">What We Do</div>
+          <div class="ab-what-p">We deliver practical digital skills and AI readiness learning through five connected programme arms.</div>
+          <div class="ab-what-grid">
+            <div class="ab-what-card">
+              <div class="ab-what-icon">💻</div>
+              <div class="ab-what-title">Digital Skills</div>
+              <div class="ab-what-desc">Essential skills for work, life and wellbeing.</div>
+            </div>
+            <div class="ab-what-card">
+              <div class="ab-what-icon">🤖</div>
+              <div class="ab-what-title">AI Readiness</div>
+              <div class="ab-what-desc">Practical AI literacy for everyday life and work.</div>
+            </div>
+            <div class="ab-what-card">
+              <div class="ab-what-icon">🤝</div>
+              <div class="ab-what-title">Community Support</div>
+              <div class="ab-what-desc">Local delivery through trusted community networks.</div>
+            </div>
+            <div class="ab-what-card">
+              <div class="ab-what-icon">♿</div>
+              <div class="ab-what-title">Inclusive Learning</div>
+              <div class="ab-what-desc">Accessible, flexible and designed for everyone.</div>
+            </div>
+            <div class="ab-what-card">
+              <div class="ab-what-icon">🌐</div>
+              <div class="ab-what-title">Partnerships</div>
+              <div class="ab-what-desc">Working with organisations to create lasting impact.</div>
+            </div>
+            <div class="ab-what-card">
+              <div class="ab-what-icon">📈</div>
+              <div class="ab-what-title">Sustainable Impact</div>
+              <div class="ab-what-desc">Focused on real outcomes for individuals and communities.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our Values -->
+        <div class="ab-values">
+          <div class="ab-values-title">Our Values</div>
+          <div class="ab-values-row">
+            <div class="ab-val"><div class="ab-val-icon">👥</div><div class="ab-val-label">People First</div></div>
+            <div class="ab-val"><div class="ab-val-icon">🎯</div><div class="ab-val-label">Integrity</div></div>
+            <div class="ab-val"><div class="ab-val-icon">♿</div><div class="ab-val-label">Inclusion</div></div>
+            <div class="ab-val"><div class="ab-val-icon">💡</div><div class="ab-val-label">Empowerment</div></div>
+            <div class="ab-val"><div class="ab-val-icon">🤝</div><div class="ab-val-label">Collaboration</div></div>
+          </div>
+        </div>
+
+        <!-- Partner CTA -->
+        <div class="ab-partner-cta">
+          <div class="ab-partner-title">Want to work with us?</div>
+          <div class="ab-partner-p">We partner with organisations, funders and communities to deliver meaningful change.</div>
+          <div class="ab-partner-btn">Partner With Us</div>
+        </div>
+
+        <div class="mini-footer">
+          <div class="mf-brand"><div class="mf-logo">SILVOL</div><div class="mf-desc">Empowering communities through digital skills and AI readiness.</div><div class="mf-social"><div class="mf-icon">f</div><div class="mf-icon">in</div><div class="mf-icon">▶</div></div></div>
+          <div><div class="mf-col-title">Explore</div><div class="mf-links"><span>Programmes</span><span>About</span><span>Resources</span><span>News</span></div></div>
+          <div><div class="mf-col-title">Support</div><div class="mf-links"><span>Help Centre</span><span>FAQs</span><span>Accessibility</span><span>Privacy Policy</span></div></div>
+          <div><div class="mf-col-title">Connect</div><div class="mf-links"><span>Partners</span><span>Contact</span></div></div>
+          <div class="mf-copy">© 2025 SILVOL. All rights reserved.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
+         2.3 PROGRAMMES PAGE
+    ════════════════════════════ -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">2.3</span>
+        <span class="wf-section-title">PROGRAMMES PAGE</span>
+      </div>
+      <div class="wf-body">
+        <div class="mini-nav">
+          <div class="mn-logo">SILVOL</div>
+          <div class="mn-links"><span>Home</span><span>Programmes</span><span>About</span><span>Resources</span><span>Partners</span><span>Contact</span></div>
+          <div class="mn-btns"><div class="mn-btn-o">Log In</div><div class="mn-btn-f">Get Started</div></div>
+        </div>
+
+        <div class="pg-hero">
+          <div class="pg-tag">Our Programmes</div>
+          <div class="pg-hero-h">Five connected arms.<br>One shared mission.</div>
+          <div style="font-size:8.5px;color:var(--ink-3);margin-top:6px;line-height:1.55">Each programme is designed to meet learners where they are and help them build the confidence and skills they need.</div>
+        </div>
+
+        <div class="pg-list">
+          <!-- CONNECT -->
+          <div class="pg-prog-block">
+            <div class="img-ph" style="height:60px;border-radius:5px"></div>
+            <div>
+              <div class="pg-prog-name">SILVOL CONNECT</div>
+              <div class="pg-prog-title">Digital confidence and community support for adults and seniors.</div>
+              <div class="pg-prog-desc">Get help with everyday technology through guided support and local sessions.</div>
+              <div class="pg-learn-more">Learn more →</div>
+            </div>
+          </div>
+          <!-- LEARN -->
+          <div class="pg-prog-block">
+            <div class="img-ph" style="height:60px;border-radius:5px"></div>
+            <div>
+              <div class="pg-prog-name">SILVOL LEARN</div>
+              <div class="pg-prog-title">Online courses and workshops covering digital skills, employability, productivity and more.</div>
+              <div class="pg-prog-desc">Structured learning pathways at your own pace.</div>
+              <div class="pg-learn-more">Learn more →</div>
+            </div>
+          </div>
+          <!-- AI -->
+          <div class="pg-prog-block">
+            <div class="img-ph" style="height:60px;border-radius:5px"></div>
+            <div>
+              <div class="pg-prog-name">SILVOL AI</div>
+              <div class="pg-prog-title">Practical AI literacy for everyday life and work.</div>
+              <div class="pg-prog-desc">Understand, use and benefit from AI tools confidently and responsibly.</div>
+              <div class="pg-learn-more">Learn more →</div>
+            </div>
+          </div>
+          <!-- FUTURES -->
+          <div class="pg-prog-block">
+            <div class="img-ph" style="height:60px;border-radius:5px"></div>
+            <div>
+              <div class="pg-prog-name">SILVOL FUTURES</div>
+              <div class="pg-prog-title">Flexible digital learning for young people and alternative education settings.</div>
+              <div class="pg-prog-desc">Wellbeing-aware learning designed for flexible needs.</div>
+              <div class="pg-learn-more">Learn more →</div>
+            </div>
+          </div>
+          <!-- HUBS -->
+          <div class="pg-prog-block">
+            <div class="img-ph" style="height:60px;border-radius:5px"></div>
+            <div>
+              <div class="pg-prog-name">SILVOL HUBS</div>
+              <div class="pg-prog-title">Community learning hubs and blended programmes delivered in local centres, libraries and community spaces.</div>
+              <div class="pg-learn-more">Learn more →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz CTA -->
+        <div class="pg-quiz">
+          <div class="pg-quiz-title">Not sure where to start?</div>
+          <div class="pg-quiz-p">Take our short quiz and we'll recommend the best programme for you.</div>
+          <div class="pg-quiz-btn">Find My Path</div>
+        </div>
+
+        <div class="mini-footer">
+          <div class="mf-brand"><div class="mf-logo">SILVOL</div><div class="mf-desc">Empowering communities through digital skills and AI readiness.</div><div class="mf-social"><div class="mf-icon">f</div><div class="mf-icon">in</div><div class="mf-icon">▶</div></div></div>
+          <div><div class="mf-col-title">Explore</div><div class="mf-links"><span>Programmes</span><span>About</span><span>Resources</span><span>News</span></div></div>
+          <div><div class="mf-col-title">Support</div><div class="mf-links"><span>Help Centre</span><span>FAQs</span><span>Accessibility</span><span>Privacy Policy</span></div></div>
+          <div><div class="mf-col-title">Connect</div><div class="mf-links"><span>Partners</span><span>Contact</span></div></div>
+          <div class="mf-copy">© 2025 SILVOL. All rights reserved.</div>
+        </div>
+        <div class="ann">Each programme card links to its own dedicated page</div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
+         2.4 ORGANISATIONS PAGE
+    ════════════════════════════ -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">2.4</span>
+        <span class="wf-section-title">ORGANISATIONS / PARTNERS</span>
+      </div>
+      <div class="wf-body">
+        <div class="mini-nav">
+          <div class="mn-logo">SILVOL</div>
+          <div class="mn-links"><span>Home</span><span>Programmes</span><span>About</span><span>Resources</span><span>Partners</span><span>Contact</span></div>
+          <div class="mn-btns"><div class="mn-btn-o">Log In</div><div class="mn-btn-f">Get Started</div></div>
+        </div>
+
+        <!-- Hero -->
+        <div class="og-hero">
+          <div>
+            <div class="og-tag">For Organisations</div>
+            <div class="og-hero-h">Stronger communities through partnership.</div>
+            <div class="og-hero-p" style="margin-top:6px">We work with councils, employers, charities and community organisations to deliver impactful digital skills and AI learning that creates real change.</div>
+          </div>
+          <div class="img-ph" style="height:80px"></div>
+        </div>
+
+        <!-- How We Partner -->
+        <div class="og-how">
+          <div class="og-how-title">How We Partner</div>
+          <div class="og-how-p">We offer flexible delivery models to meet the needs of your organisation and the communities you serve.</div>
+          <div class="og-how-grid">
+            <div class="og-how-card">
+              <div class="og-how-icon">📋</div>
+              <div class="og-how-name">Needs Led</div>
+              <div class="og-how-desc">Co-design programmes that address your community priorities.</div>
+            </div>
+            <div class="og-how-card">
+              <div class="og-how-icon">✅</div>
+              <div class="og-how-name">Proven Delivery</div>
+              <div class="og-how-desc">Experienced tutors, quality content and blended learning models.</div>
+            </div>
+            <div class="og-how-card">
+              <div class="og-how-icon">📊</div>
+              <div class="og-how-name">Measurable Impact</div>
+              <div class="og-how-desc">Clear reporting, outcomes and funding alignment.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Who We Work With -->
+        <div class="og-who">
+          <div class="og-who-title">Who We Work With</div>
+          <div class="og-who-grid">
+            <div class="og-who-item">
+              <div class="og-who-icon">🏛️</div>
+              <div class="og-who-label">Local Authorities</div>
+            </div>
+            <div class="og-who-item">
+              <div class="og-who-icon">🏢</div>
+              <div class="og-who-label">Employers</div>
+            </div>
+            <div class="og-who-item">
+              <div class="og-who-icon">❤️</div>
+              <div class="og-who-label">Charities</div>
+            </div>
+            <div class="og-who-item">
+              <div class="og-who-icon">🎓</div>
+              <div class="og-who-label">Education Providers</div>
+            </div>
+            <div class="og-who-item">
+              <div class="og-who-icon">👥</div>
+              <div class="og-who-label">Community Groups</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partnership Benefits -->
+        <div class="og-benefits">
+          <div class="og-ben-title">Partnership Benefits</div>
+          <div class="og-ben-list">
+            <div class="og-ben-item"><span class="og-ben-check">✓</span>Digital inclusion and skills development</div>
+            <div class="og-ben-item"><span class="og-ben-check">✓</span>Workforce readiness and employability</div>
+            <div class="og-ben-item"><span class="og-ben-check">✓</span>AI literacy and confidence for all</div>
+            <div class="og-ben-item"><span class="og-ben-check">✓</span>Flexible delivery: online, face-to-face or blended</div>
+            <div class="og-ben-item"><span class="og-ben-check">✓</span>Aligned with national and local funding priorities</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="og-cta">
+          <div class="og-cta-title">Let's work together</div>
+          <div class="og-cta-p">Tell us about your organisation and how we can support your goals.</div>
+          <div class="og-cta-btn">Partner With Us</div>
+        </div>
+
+        <div class="mini-footer">
+          <div class="mf-brand"><div class="mf-logo">SILVOL</div><div class="mf-desc">Empowering communities through digital skills and AI readiness.</div><div class="mf-social"><div class="mf-icon">f</div><div class="mf-icon">in</div><div class="mf-icon">▶</div></div></div>
+          <div><div class="mf-col-title">Explore</div><div class="mf-links"><span>Programmes</span><span>About</span><span>Resources</span><span>News</span></div></div>
+          <div><div class="mf-col-title">Support</div><div class="mf-links"><span>Help Centre</span><span>FAQs</span><span>Accessibility</span><span>Privacy Policy</span></div></div>
+          <div><div class="mf-col-title">Connect</div><div class="mf-links"><span>Partners</span><span>Contact</span></div></div>
+          <div class="mf-copy">© 2025 SILVOL. All rights reserved.</div>
+        </div>
+        <div class="ann">UKSPF + WMCA language throughout — funder-aligned copy</div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
+         2.5 CONTACT PAGE
+    ════════════════════════════ -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">2.5</span>
+        <span class="wf-section-title">CONTACT / ENQUIRY</span>
+      </div>
+      <div class="wf-body">
+        <div class="mini-nav">
+          <div class="mn-logo">SILVOL</div>
+          <div class="mn-links"><span>Home</span><span>Programmes</span><span>About</span><span>Resources</span><span>Partners</span><span>Contact</span></div>
+          <div class="mn-btns"><div class="mn-btn-o">Log In</div><div class="mn-btn-f">Get Started</div></div>
+        </div>
+
+        <!-- Hero -->
+        <div class="ct-hero">
+          <div class="ct-tag">Get in touch</div>
+          <div class="ct-hero-h">We're here to help.</div>
+          <div class="ct-hero-p">Have a question, want to learn more, or interested in partnering with us? Send us a message and we'll get back to you.</div>
+        </div>
+
+        <!-- Body: Form + Info -->
+        <div class="ct-body">
+          <div class="ct-form">
+            <div class="ct-form-title">Send us a message</div>
+
+            <div class="ct-field">
+              <label class="ct-label">Your name</label>
+              <input class="ct-input" type="text" placeholder="Enter your name" readonly/>
+            </div>
+            <div class="ct-field">
+              <label class="ct-label">Email address</label>
+              <input class="ct-input" type="email" placeholder="Enter your email" readonly/>
+            </div>
+            <div class="ct-field">
+              <label class="ct-label">Organisation (optional)</label>
+              <input class="ct-input" type="text" placeholder="Enter organisation name" readonly/>
+            </div>
+            <div class="ct-field">
+              <label class="ct-label">I'm interested in</label>
+              <select class="ct-select">
+                <option>Select an option</option>
+                <option>Joining a programme</option>
+                <option>Partnership / contract</option>
+                <option>Funding enquiry</option>
+                <option>General enquiry</option>
+              </select>
+            </div>
+            <div class="ct-field">
+              <label class="ct-label">Your message</label>
+              <textarea class="ct-textarea" placeholder="Type your message here..."></textarea>
+            </div>
+            <button class="ct-submit">Send Message</button>
+          </div>
+
+          <div class="ct-info">
+            <div class="ct-info-title">Other ways to reach us</div>
+            <div class="ct-info-item">
+              <span class="ct-info-icon">✉️</span>
+              <div>
+                <div class="ct-info-label">Email</div>
+                <div class="ct-info-val">hello@silvol.org</div>
+              </div>
+            </div>
+            <div class="ct-info-item">
+              <span class="ct-info-icon">📞</span>
+              <div>
+                <div class="ct-info-label">Phone</div>
+                <div class="ct-info-val">0121 123 4567</div>
+              </div>
+            </div>
+            <div class="ct-info-item">
+              <span class="ct-info-icon">📍</span>
+              <div>
+                <div class="ct-info-label">Address</div>
+                <div class="ct-info-val">SILVOL Community Hub,<br>Birmingham, B1 1AA</div>
+              </div>
+            </div>
+            <div class="ct-social-title">Follow us</div>
+            <div class="ct-social-row">
+              <div class="ct-soc-icon">f</div>
+              <div class="ct-soc-icon">𝕏</div>
+              <div class="ct-soc-icon">in</div>
+              <div class="ct-soc-icon">📷</div>
+              <div class="ct-soc-icon">▶</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Org CTA -->
+        <div class="ct-org-cta">
+          <div class="ct-org-title">For organisations and partners</div>
+          <div class="ct-org-p">Interested in working together? Visit our partner page to find out how we can collaborate.</div>
+          <div class="ct-org-btn">Partnerships Page</div>
+        </div>
+
+        <div class="mini-footer">
+          <div class="mf-brand"><div class="mf-logo">SILVOL</div><div class="mf-desc">Empowering communities through digital skills and AI readiness.</div><div class="mf-social"><div class="mf-icon">f</div><div class="mf-icon">in</div><div class="mf-icon">▶</div></div></div>
+          <div><div class="mf-col-title">Explore</div><div class="mf-links"><span>Programmes</span><span>About</span><span>Resources</span><span>News</span></div></div>
+          <div><div class="mf-col-title">Support</div><div class="mf-links"><span>Help Centre</span><span>FAQs</span><span>Accessibility</span><span>Privacy Policy</span></div></div>
+          <div><div class="mf-col-title">Connect</div><div class="mf-links"><span>Partners</span><span>Contact</span></div></div>
+          <div class="mf-copy">© 2025 SILVOL. All rights reserved.</div>
+        </div>
+        <div class="ann">Form → Django view → email via AWS SES + admin notification</div>
+      </div>
+    </div>
+
+  </div><!-- end cols-5 -->
+
+  <div class="note" style="margin:0 0 0 0">
+    <strong>Implementation notes:</strong> All 5 public pages extend <code>base.html</code>. Nav state = not logged in on all. Each page is a Django view in the <code>core</code> app.
+    Programmes page links to individual programme detail pages. Contact form posts to a Django view, sends email via AWS SES, saves enquiry to DB, redirects to confirmation page.
+    All pages require SEO meta tags (title, description, OG). WCAG 2.1 AA accessibility compliance required throughout.
+  </div>
+
+</div>
+</body>
+</html>
