@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SILVOL — Foundation Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+
+<style>
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --ink:        #111318;
+  --ink-2:      #3a3d45;
+  --ink-3:      #6b7080;
+  --ink-4:      #9aa0b0;
+  --rule:       #d4d8e2;
+  --rule-2:     #e8eaf0;
+  --bg:         #f4f5f8;
+  --white:      #ffffff;
+  --accent:     #1a6b3a;
+  --accent-2:   #e8f4ed;
+  --red:        #c0392b;
+  --red-pale:   #fdf0ef;
+  --green-ok:   #1a6b3a;
+  --green-pale: #edf7f1;
+  --disabled:   #c8ccd8;
+
+  --ff-mono: 'IBM Plex Mono', monospace;
+  --ff-sans: 'IBM Plex Sans', sans-serif;
+
+  --label-size: 9.5px;
+  --note-size:  11px;
+  --ui-size:    12px;
+  --body-size:  13px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); }
+body {
+  font-family: var(--ff-sans);
+  color: var(--ink);
+  font-size: var(--body-size);
+  line-height: 1.5;
+}
+
+/* ── PAGE SHELL ─────────────────────────────────────────── */
+.page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+
+/* ── DOC HEADER ─────────────────────────────────────────── */
+.doc-header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 48px;
+}
+.doc-title {
+  font-family: var(--ff-mono);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.doc-sub {
+  font-size: var(--note-size);
+  color: var(--ink-3);
+  font-weight: 400;
+}
+.doc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  color: var(--ink-3);
+  margin-top: 12px;
+}
+
+/* ── GRID LAYOUT ────────────────────────────────────────── */
+.wf-grid {
+  display: grid;
+  gap: 32px;
+}
+.col-1 { grid-template-columns: 1fr; }
+.col-2 { grid-template-columns: 1fr 1fr; }
+.col-3 { grid-template-columns: 1fr 1fr 1fr; }
+.col-2-1 { grid-template-columns: 2fr 1fr; }
+.col-1-2 { grid-template-columns: 1fr 2fr; }
+
+/* ── SECTION WRAPPER ────────────────────────────────────── */
+.wf-section {
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.wf-section-header {
+  background: var(--ink);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wf-section-num {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  min-width: 28px;
+}
+.wf-section-title {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.wf-section-body {
+  padding: 24px;
+}
+.wf-sub-label {
+  font-family: var(--ff-mono);
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--rule-2);
+}
+.wf-sub-label:first-child { margin-top: 0; }
+
+/* ── SHARED WF ELEMENTS ─────────────────────────────────── */
+.wf-placeholder {
+  background: var(--rule-2);
+  border: 1.5px dashed var(--rule);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wf-placeholder-x {
+  position: relative;
+  overflow: hidden;
+}
+.wf-placeholder-x::before,
+.wf-placeholder-x::after {
+  content: '';
+  position: absolute;
+  background: var(--rule);
+  height: 1.5px;
+  width: 141%;
+  left: -20%;
+  transform-origin: center;
+}
+.wf-placeholder-x::before { top: 50%; transform: translateY(-50%) rotate(calc(atan2(var(--h,120), var(--w,200)))); }
+.wf-placeholder-x::after  { top: 50%; transform: translateY(-50%) rotate(calc(-1 * atan2(var(--h,120), var(--w,200)))); }
+
+.wf-line {
+  height: 8px;
+  background: var(--rule-2);
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+.wf-line.short { width: 55%; }
+.wf-line.med   { width: 75%; }
+.wf-line.full  { width: 100%; }
+.wf-line.tiny  { width: 35%; height: 6px; }
+
+/* ── 1.1 BASE TEMPLATE ──────────────────────────────────── */
+.base-tmpl {
+  border: 1.5px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 11px;
+}
+.base-nav {
+  background: var(--ink);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.base-nav-logo {
+  display: flex; align-items: center; gap: 8px;
+}
+.base-nav-icon {
+  width: 24px; height: 24px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: white; font-weight: 700;
+}
+.base-nav-wordmark {
+  font-family: var(--ff-mono);
+  font-size: 13px; font-weight: 600;
+  color: white; letter-spacing: 0.06em;
+}
+.base-nav-tagline {
+  font-size: 8px; color: rgba(255,255,255,0.45);
+  margin-top: 1px; line-height: 1.2;
+}
+.base-nav-links {
+  display: flex; gap: 16px;
+}
+.base-nav-links span {
+  font-size: 10px; color: rgba(255,255,255,0.65);
+}
+.base-nav-btns {
+  display: flex; gap: 6px;
+}
+.wf-btn-outline-sm {
+  padding: 4px 10px; border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 3px; font-size: 10px; color: rgba(255,255,255,0.8);
+}
+.wf-btn-filled-sm {
+  padding: 4px 10px;
+  background: var(--accent); border-radius: 3px;
+  font-size: 10px; color: white; font-weight: 600;
+  border: none;
+}
+.base-hero {
+  background: var(--bg);
+  padding: 32px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+.base-hero h2 {
+  font-size: 17px; font-weight: 600;
+  color: var(--ink); line-height: 1.25; margin-bottom: 8px;
+}
+.base-hero p {
+  font-size: 10px; color: var(--ink-3);
+  max-width: 320px; margin: 0 auto 14px;
+}
+.base-hero-btns { display: flex; gap: 8px; justify-content: center; }
+.base-hero-btn-primary {
+  padding: 7px 16px;
+  background: var(--ink); color: white;
+  font-size: 10px; font-weight: 600;
+  border-radius: 4px;
+}
+.base-hero-btn-secondary {
+  padding: 7px 16px;
+  background: transparent; color: var(--ink);
+  font-size: 10px; font-weight: 500;
+  border: 1.5px solid var(--rule); border-radius: 4px;
+}
+.base-prog-section {
+  padding: 20px 16px;
+  border-bottom: 1px solid var(--rule-2);
+}
+.base-prog-title {
+  font-size: 11px; font-weight: 600; text-align: center;
+  margin-bottom: 14px; color: var(--ink);
+}
+.base-prog-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+}
+.base-prog-card {
+  border: 1.5px solid var(--rule); border-radius: 5px; overflow: hidden;
+}
+.base-prog-img {
+  height: 50px; background: var(--rule-2);
+  position: relative; overflow: hidden;
+}
+.base-prog-img::before,
+.base-prog-img::after {
+  content: ''; position: absolute;
+  background: var(--rule); height: 1px; width: 150%; left: -25%;
+}
+.base-prog-img::before { top: 33%; transform: rotate(20deg); }
+.base-prog-img::after  { top: 66%; transform: rotate(-20deg); }
+.base-prog-card-body { padding: 8px; }
+.base-prog-card-body .wf-line { margin-bottom: 4px; }
+.base-prog-btn {
+  display: block; width: 100%;
+  padding: 5px; text-align: center;
+  border: 1px solid var(--rule); border-radius: 3px;
+  font-size: 9px; color: var(--ink-3); margin-top: 6px;
+}
+.base-footer {
+  background: var(--ink);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 12px;
+}
+.base-footer-col {}
+.base-footer-logo {
+  font-family: var(--ff-mono);
+  font-size: 11px; font-weight: 600; color: white; margin-bottom: 4px;
+}
+.base-footer-tagline {
+  font-size: 8px; color: rgba(255,255,255,0.4); line-height: 1.5; margin-bottom: 8px;
+}
+.base-footer-social { display: flex; gap: 5px; }
+.base-footer-icon {
+  width: 16px; height: 16px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 3px; display: flex; align-items: center; justify-content: center;
+  font-size: 7px; color: rgba(255,255,255,0.5);
+}
+.base-footer-col-title {
+  font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.35);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+}
+.base-footer-links { display: flex; flex-direction: column; gap: 4px; }
+.base-footer-links span { font-size: 9px; color: rgba(255,255,255,0.5); }
+.base-footer-copy {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 8px;
+  font-size: 8px; color: rgba(255,255,255,0.25); text-align: center;
+}
+
+/* ── 1.2 NAVBAR ─────────────────────────────────────────── */
+.navbar-demo {
+  border: 1.5px solid var(--rule);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.navbar-demo:last-child { margin-bottom: 0; }
+.navbar-bar {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border-bottom: 1px solid var(--rule-2);
+}
+.navbar-bar.dark { background: var(--ink); border-bottom-color: rgba(255,255,255,0.1); }
+.nb-logo {
+  font-family: var(--ff-mono);
+  font-size: 13px; font-weight: 700;
+  color: var(--ink); margin-right: 24px;
+  letter-spacing: 0.03em;
+}
+.navbar-bar.dark .nb-logo { color: white; }
+.nb-links { display: flex; gap: 14px; flex: 1; }
+.nb-links span {
+  font-size: 11px; color: var(--ink-3);
+}
+.navbar-bar.dark .nb-links span { color: rgba(255,255,255,0.6); }
+.nb-right { display: flex; align-items: center; gap: 8px; }
+.nb-btn-outline {
+  padding: 5px 12px;
+  border: 1.5px solid var(--rule); border-radius: 4px;
+  font-size: 11px; font-weight: 500; color: var(--ink);
+}
+.navbar-bar.dark .nb-btn-outline {
+  border-color: rgba(255,255,255,0.3); color: white;
+}
+.nb-btn-filled {
+  padding: 5px 12px;
+  background: var(--ink); border-radius: 4px;
+  font-size: 11px; font-weight: 600; color: white; border: none;
+}
+.navbar-bar.dark .nb-btn-filled { background: var(--accent); }
+.nb-icon {
+  width: 28px; height: 28px;
+  border: 1.5px solid var(--rule); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+}
+.navbar-bar.dark .nb-icon { border-color: rgba(255,255,255,0.25); }
+.nb-bell { font-size: 13px; color: var(--ink-3); }
+.navbar-bar.dark .nb-bell { color: rgba(255,255,255,0.5); }
+.nb-user-chip {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border: 1.5px solid var(--rule); border-radius: 20px;
+  font-size: 11px; font-weight: 500; color: var(--ink);
+}
+.navbar-bar.dark .nb-user-chip { border-color: rgba(255,255,255,0.2); color: white; }
+.nb-avatar {
+  width: 20px; height: 20px;
+  background: var(--accent-2); border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--accent); font-weight: 700;
+}
+.nb-chevron { font-size: 9px; color: var(--ink-4); }
+.navbar-bar.dark .nb-chevron { color: rgba(255,255,255,0.4); }
+.navbar-state-label {
+  font-family: var(--ff-mono);
+  font-size: 9.5px; font-weight: 500;
+  color: var(--ink-4);
+  padding: 5px 12px;
+  background: var(--bg);
+  border-top: 1px solid var(--rule-2);
+}
+
+/* ── 1.3 BUTTONS ────────────────────────────────────────── */
+.btn-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.btn-group:last-child { margin-bottom: 0; }
+
+.btn { display: inline-flex; align-items: center; gap: 6px; border-radius: 5px; font-family: var(--ff-sans); font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; }
+.btn-primary        { background: var(--ink); color: white; font-size: 13px; padding: 9px 20px; }
+.btn-primary:hover  { background: #2a2d35; }
+.btn-primary.disabled { background: var(--disabled); color: white; cursor: not-allowed; }
+
+.btn-secondary      { background: transparent; color: var(--ink); font-size: 13px; padding: 8px 20px; border: 1.5px solid var(--rule); }
+.btn-secondary:hover{ border-color: var(--ink-3); }
+.btn-secondary.disabled { color: var(--disabled); border-color: var(--rule-2); cursor: not-allowed; }
+
+.btn-text           { background: transparent; color: var(--accent); font-size: 13px; padding: 8px 4px; border: none; font-weight: 500; }
+.btn-text::after    { content: ' →'; font-size: 11px; }
+.btn-text:hover     { color: var(--green-ok); }
+.btn-text.disabled  { color: var(--disabled); cursor: not-allowed; }
+.btn-text.disabled::after { content: ''; }
+
+/* ── 1.4 CARDS ──────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+.wf-card {
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.wf-card-img {
+  height: 90px;
+  background: var(--rule-2);
+  position: relative; overflow: hidden;
+}
+.wf-card-img::before,
+.wf-card-img::after {
+  content: ''; position: absolute;
+  background: var(--rule); height: 1.5px; width: 150%; left: -25%;
+}
+.wf-card-img::before { top: 40%; transform: rotate(12deg); }
+.wf-card-img::after  { top: 60%; transform: rotate(-12deg); }
+.wf-card-body { padding: 14px; }
+.wf-card-body .wf-line { margin-bottom: 5px; }
+.wf-card-btn {
+  display: block; width: 100%;
+  padding: 7px; text-align: center;
+  border: 1.5px solid var(--rule); border-radius: 5px;
+  font-size: 11px; font-weight: 600; color: var(--ink);
+  margin-top: 12px;
+}
+
+/* ── 1.5 FORMS ──────────────────────────────────────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.form-field { display: flex; flex-direction: column; gap: 5px; }
+.form-label {
+  font-size: 11px; font-weight: 600; color: var(--ink-2);
+}
+.form-input {
+  width: 100%;
+  border: 1.5px solid var(--rule);
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 12px; color: var(--ink-4);
+  background: var(--white);
+  font-family: var(--ff-sans);
+  outline: none;
+}
+.form-input.with-icon { padding-right: 36px; position: relative; }
+.form-input-wrap { position: relative; }
+.form-input-icon {
+  position: absolute; right: 10px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px; color: var(--ink-4);
+}
+.form-input.error    { border-color: var(--red); background: var(--red-pale); }
+.form-input.success  { border-color: var(--green-ok); background: var(--green-pale); }
+.form-hint.error     { font-size: 10px; color: var(--red); font-weight: 500; }
+.form-hint.success   { font-size: 10px; color: var(--green-ok); font-weight: 500; }
+.form-select {
+  width: 100%;
+  border: 1.5px solid var(--rule); border-radius: 5px;
+  padding: 8px 12px; font-size: 12px;
+  color: var(--ink-4); background: var(--white);
+  font-family: var(--ff-sans); appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23aaa'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+}
+.form-textarea {
+  width: 100%;
+  border: 1.5px solid var(--rule); border-radius: 5px;
+  padding: 8px 12px; font-size: 12px;
+  color: var(--ink-4); background: var(--white);
+  font-family: var(--ff-sans); resize: vertical; min-height: 64px;
+}
+.form-checkbox-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 8px;
+}
+.form-checkbox {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--rule); border-radius: 3px;
+  flex-shrink: 0;
+}
+.form-checkbox-label { font-size: 11px; color: var(--ink-3); }
+.form-btns {
+  display: flex; gap: 8px; margin-top: 14px;
+}
+
+/* ── 1.6 DASHBOARD ──────────────────────────────────────── */
+.dash-shell {
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.dash-topbar {
+  background: var(--ink);
+  padding: 10px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dash-logo {
+  font-family: var(--ff-mono);
+  font-size: 14px; font-weight: 700; color: white; letter-spacing: 0.04em;
+}
+.dash-topbar-right { display: flex; align-items: center; gap: 10px; }
+.dash-topbar-title { font-size: 13px; font-weight: 600; color: white; }
+.dash-bell { font-size: 14px; color: rgba(255,255,255,0.5); }
+.dash-user-chip {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 20px; font-size: 11px; color: rgba(255,255,255,0.8);
+}
+.dash-avatar {
+  width: 20px; height: 20px;
+  background: var(--accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: white; font-weight: 700;
+}
+.dash-body {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  min-height: 360px;
+}
+.dash-sidebar {
+  background: var(--bg);
+  border-right: 1.5px solid var(--rule-2);
+  padding: 14px 0;
+}
+.dash-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 16px;
+  font-size: 12px; font-weight: 500; color: var(--ink-3);
+  cursor: pointer;
+  position: relative;
+}
+.dash-nav-item.active {
+  color: var(--accent);
+  background: rgba(26,107,58,0.07);
+  font-weight: 600;
+}
+.dash-nav-item.active::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--accent); border-radius: 0 2px 2px 0;
+}
+.dash-nav-icon { font-size: 14px; min-width: 18px; text-align: center; }
+.dash-nav-spacer { height: 1px; background: var(--rule-2); margin: 8px 16px; }
+.dash-nav-bottom { margin-top: auto; padding-top: 12px; }
+.dash-nav-logout {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 16px;
+  font-size: 12px; color: var(--ink-4);
+}
+.dash-main { padding: 20px; overflow: hidden; }
+.dash-page-title {
+  font-size: 16px; font-weight: 700; color: var(--ink);
+  margin-bottom: 16px;
+}
+.dash-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.dash-stat {
+  background: var(--bg);
+  border: 1.5px solid var(--rule-2);
+  border-radius: 7px;
+  padding: 12px 14px;
+}
+.dash-stat-val {
+  font-family: var(--ff-mono);
+  font-size: 20px; font-weight: 700; color: var(--ink);
+  line-height: 1; margin-bottom: 4px;
+}
+.dash-stat-label {
+  font-size: 10px; color: var(--ink-4); line-height: 1.3;
+}
+.dash-section-title {
+  font-size: 12px; font-weight: 700; color: var(--ink);
+  margin-bottom: 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.dash-view-all { font-size: 11px; color: var(--accent); font-weight: 500; }
+.dash-session-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 9px 12px;
+  border: 1.5px solid var(--rule-2); border-radius: 6px;
+  margin-bottom: 8px;
+  background: var(--white);
+}
+.dash-session-icon {
+  width: 28px; height: 28px;
+  border: 1.5px solid var(--rule);
+  border-radius: 5px; display: flex; align-items: center;
+  justify-content: center; font-size: 12px; flex-shrink: 0;
+}
+.dash-session-info { flex: 1; }
+.dash-session-info .wf-line { margin-bottom: 3px; }
+.dash-session-date { font-size: 10px; color: var(--ink-4); }
+.dash-session-btn {
+  padding: 5px 12px;
+  background: var(--ink); color: white;
+  font-size: 10px; font-weight: 600;
+  border-radius: 4px; white-space: nowrap;
+}
+.dash-rec-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+}
+.dash-rec-card {
+  height: 64px; background: var(--rule-2);
+  border-radius: 5px; border: 1.5px solid var(--rule);
+  position: relative; overflow: hidden;
+}
+.dash-rec-card::before,
+.dash-rec-card::after {
+  content: ''; position: absolute;
+  background: var(--rule); height: 1px; width: 140%; left: -20%;
+}
+.dash-rec-card::before { top: 40%; transform: rotate(8deg); }
+.dash-rec-card::after  { top: 60%; transform: rotate(-8deg); }
+
+/* ── 1.7 USER ROLES ─────────────────────────────────────── */
+.roles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.role-card {
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+}
+.role-icon-wrap {
+  width: 42px; height: 42px;
+  background: var(--bg);
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.role-info { flex: 1; }
+.role-name {
+  font-size: 13px; font-weight: 700; color: var(--ink);
+  margin-bottom: 4px;
+}
+.role-desc {
+  font-size: 11px; color: var(--ink-3); line-height: 1.5;
+  margin-bottom: 10px;
+}
+.role-access { display: flex; flex-direction: column; gap: 3px; }
+.role-access-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--ink-2);
+}
+.role-access-item::before {
+  content: '›';
+  color: var(--accent); font-weight: 700; font-size: 13px;
+}
+.role-card.learner    .role-icon-wrap { background: #edf7f1; border-color: #b8dfc8; }
+.role-card.tutor      .role-icon-wrap { background: #fff8e7; border-color: #ffd166; }
+.role-card.org        .role-icon-wrap { background: #e8f4fd; border-color: #90caf9; }
+.role-card.admin      .role-icon-wrap { background: #fce4ec; border-color: #f48fb1; }
+
+/* ── ANNOTATIONS ────────────────────────────────────────── */
+.annotation {
+  font-family: var(--ff-mono);
+  font-size: 9.5px;
+  color: var(--accent);
+  background: var(--accent-2);
+  border: 1px solid #b8dfc8;
+  border-radius: 3px;
+  padding: 2px 7px;
+  display: inline-block;
+  margin-top: 8px;
+}
+.note-box {
+  background: #fffbea;
+  border: 1.5px solid #f5d87a;
+  border-radius: 5px;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: #7a5a00;
+  margin-top: 14px;
+  line-height: 1.6;
+}
+.note-box strong { font-weight: 700; }
+
+/* ── RESPONSIVE GUARD ───────────────────────────────────── */
+@media print {
+  body { background: white; }
+  .page { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- DOC HEADER -->
+  <div class="doc-header">
+    <div class="doc-title">1. FOUNDATION FIRST — WIREFRAMES</div>
+    <div class="doc-sub">Reusable structure and components used across the entire SILVOL platform.</div>
+    <div class="doc-badge">SILVOL v1 &nbsp;·&nbsp; Phase 1 &nbsp;·&nbsp; Base Components</div>
+  </div>
+
+  <!-- ROW 1: Base Template (full width) -->
+  <div class="wf-grid col-1" style="margin-bottom:32px">
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">1.1</span>
+        <span class="wf-section-title">BASE TEMPLATE (base.html)</span>
+      </div>
+      <div class="wf-section-body">
+        <div class="base-tmpl">
+          <!-- Nav -->
+          <div class="base-nav">
+            <div class="base-nav-logo">
+              <div class="base-nav-icon">S</div>
+              <div>
+                <div class="base-nav-wordmark">SILVOL</div>
+                <div class="base-nav-tagline">Skilling Individuals for<br>Volunteering and Lifelong Learning</div>
+              </div>
+            </div>
+            <div class="base-nav-links">
+              <span>Home</span><span>Programmes</span><span>About</span><span>Resources</span><span>Contact</span>
+            </div>
+            <div class="base-nav-btns">
+              <div class="wf-btn-outline-sm">Log in</div>
+              <div class="wf-btn-filled-sm">Sign up</div>
+            </div>
+          </div>
+          <!-- Hero -->
+          <div class="base-hero">
+            <h2>Empowering Communities<br>Through Learning</h2>
+            <p>SILVOL provides free, accessible learning to build confidence, skills and AI literacy for a stronger future.</p>
+            <div class="base-hero-btns">
+              <div class="base-hero-btn-primary">Explore Programmes</div>
+              <div class="base-hero-btn-secondary">Learn More</div>
+            </div>
+          </div>
+          <!-- Programmes Strip -->
+          <div class="base-prog-section">
+            <div class="base-prog-title">Our Programmes</div>
+            <div class="base-prog-grid">
+              <div class="base-prog-card">
+                <div class="base-prog-img"></div>
+                <div class="base-prog-card-body">
+                  <div class="wf-line short"></div>
+                  <div class="wf-line med"></div>
+                  <div class="wf-line tiny"></div>
+                  <div class="base-prog-btn">View Programme</div>
+                </div>
+              </div>
+              <div class="base-prog-card">
+                <div class="base-prog-img"></div>
+                <div class="base-prog-card-body">
+                  <div class="wf-line short"></div>
+                  <div class="wf-line full"></div>
+                  <div class="wf-line tiny"></div>
+                  <div class="base-prog-btn">View Programme</div>
+                </div>
+              </div>
+              <div class="base-prog-card">
+                <div class="base-prog-img"></div>
+                <div class="base-prog-card-body">
+                  <div class="wf-line med"></div>
+                  <div class="wf-line short"></div>
+                  <div class="wf-line tiny"></div>
+                  <div class="base-prog-btn">View Programme</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Footer -->
+          <div class="base-footer">
+            <div class="base-footer-col">
+              <div class="base-footer-logo">SILVOL</div>
+              <div class="base-footer-tagline">Skilling Individuals for<br>Volunteering and Lifelong Learning</div>
+              <div class="base-footer-social">
+                <div class="base-footer-icon">f</div>
+                <div class="base-footer-icon">in</div>
+                <div class="base-footer-icon">▶</div>
+              </div>
+            </div>
+            <div class="base-footer-col">
+              <div class="base-footer-col-title">Explore</div>
+              <div class="base-footer-links">
+                <span>Programmes</span><span>Resources</span><span>AI Learning</span><span>About Us</span>
+              </div>
+            </div>
+            <div class="base-footer-col">
+              <div class="base-footer-col-title">Support</div>
+              <div class="base-footer-links">
+                <span>Help Centre</span><span>Contact</span><span>Enquiries</span><span>Privacy Policy</span>
+              </div>
+            </div>
+            <div class="base-footer-col">
+              <div class="base-footer-col-title">Connect</div>
+              <div class="base-footer-links">
+                <span>Partners</span><span>Organisations</span><span>Become a Partner</span>
+              </div>
+            </div>
+            <div class="base-footer-copy">© 2025 SILVOL. All rights reserved.</div>
+          </div>
+        </div>
+        <div class="annotation">Django: {% block content %}{% endblock %} — all pages extend base.html</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Navbar + Buttons -->
+  <div class="wf-grid col-2" style="margin-bottom:32px">
+
+    <!-- 1.2 NAVBAR -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">1.2</span>
+        <span class="wf-section-title">NAVBAR — State Variations</span>
+      </div>
+      <div class="wf-section-body">
+
+        <!-- Default -->
+        <div class="wf-sub-label">Default (Not logged in)</div>
+        <div class="navbar-demo">
+          <div class="navbar-bar">
+            <div class="nb-logo">SILVOL</div>
+            <div class="nb-links">
+              <span>Home</span><span>Programmes</span><span>About</span><span>Resources</span><span>Contact</span>
+            </div>
+            <div class="nb-right">
+              <div class="nb-btn-outline">Log in</div>
+              <div class="nb-btn-filled">Sign up</div>
+            </div>
+          </div>
+          <div class="navbar-state-label">Default — Not logged in</div>
+        </div>
+
+        <!-- Learner -->
+        <div class="wf-sub-label">Logged in — Learner</div>
+        <div class="navbar-demo">
+          <div class="navbar-bar">
+            <div class="nb-logo">SILVOL</div>
+            <div class="nb-links">
+              <span>Dashboard</span><span>My Learning</span><span>Sessions</span><span>Resources</span>
+            </div>
+            <div class="nb-right">
+              <div class="nb-bell">🔔</div>
+              <div class="nb-user-chip">
+                <div class="nb-avatar">L</div>
+                User Name
+                <span class="nb-chevron">▾</span>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-state-label">Logged in (Learner)</div>
+        </div>
+
+        <!-- Tutor -->
+        <div class="wf-sub-label">Logged in — Tutor / Coach</div>
+        <div class="navbar-demo">
+          <div class="navbar-bar">
+            <div class="nb-logo">SILVOL</div>
+            <div class="nb-links">
+              <span>Dashboard</span><span>My Cohorts</span><span>Sessions</span><span>Reports</span>
+            </div>
+            <div class="nb-right">
+              <div class="nb-bell">🔔</div>
+              <div class="nb-user-chip">
+                <div class="nb-avatar" style="background:#ffe8d6;color:#c05000;border-color:#ffa060">T</div>
+                Tutor Name
+                <span class="nb-chevron">▾</span>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-state-label">Logged in (Tutor / Coach)</div>
+        </div>
+
+        <!-- Organisation -->
+        <div class="wf-sub-label">Logged in — Organisation</div>
+        <div class="navbar-demo">
+          <div class="navbar-bar">
+            <div class="nb-logo">SILVOL</div>
+            <div class="nb-links">
+              <span>Dashboard</span><span>Programmes</span><span>Learners</span><span>Reports</span>
+            </div>
+            <div class="nb-right">
+              <div class="nb-bell">🔔</div>
+              <div class="nb-user-chip">
+                <div class="nb-avatar" style="background:#e3f2fd;color:#1565c0;border-color:#90caf9">O</div>
+                Org Name
+                <span class="nb-chevron">▾</span>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-state-label">Logged in (Organisation)</div>
+        </div>
+
+        <div class="note-box"><strong>Note:</strong> Nav items change based on user role. Role determined on login. Implemented via Django context processor + template conditionals.</div>
+      </div>
+    </div>
+
+    <!-- 1.3 BUTTONS -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">1.3</span>
+        <span class="wf-section-title">BUTTONS</span>
+      </div>
+      <div class="wf-section-body">
+
+        <div class="wf-sub-label">Primary Buttons</div>
+        <div class="btn-group">
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-primary disabled" disabled>Primary Disabled</button>
+        </div>
+
+        <div class="wf-sub-label">Secondary Buttons</div>
+        <div class="btn-group">
+          <button class="btn btn-secondary">Secondary Button</button>
+          <button class="btn btn-secondary">Secondary Button</button>
+          <button class="btn btn-secondary disabled" disabled>Disabled</button>
+        </div>
+
+        <div class="wf-sub-label">Text Button / Link</div>
+        <div class="btn-group">
+          <button class="btn btn-text">Text Link</button>
+          <button class="btn btn-text">Text Link</button>
+          <button class="btn btn-text disabled" disabled>Disabled Link</button>
+        </div>
+
+        <div class="note-box" style="margin-top:20px">
+          <strong>Usage guide:</strong><br>
+          Primary → main CTA (enrol, sign up, submit)<br>
+          Secondary → alternative action (learn more, cancel)<br>
+          Text/Link → inline navigation or tertiary actions
+        </div>
+
+        <!-- 1.4 CARDS inline here -->
+        <div class="wf-sub-label" style="margin-top:28px">1.4 — CARDS</div>
+        <div class="cards-grid">
+          <div class="wf-card">
+            <div class="wf-card-img"></div>
+            <div class="wf-card-body">
+              <div class="wf-line short"></div>
+              <div class="wf-line med"></div>
+              <div class="wf-line full"></div>
+              <div class="wf-card-btn">View Details</div>
+            </div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-img"></div>
+            <div class="wf-card-body">
+              <div class="wf-line med"></div>
+              <div class="wf-line short"></div>
+              <div class="wf-line full"></div>
+              <div class="wf-card-btn">Continue Learning</div>
+            </div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-img"></div>
+            <div class="wf-card-body">
+              <div class="wf-line full"></div>
+              <div class="wf-line med"></div>
+              <div class="wf-line short"></div>
+              <div class="wf-card-btn">View Programme</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end row 2 -->
+
+  <!-- ROW 3: Forms + Dashboard -->
+  <div class="wf-grid col-2" style="margin-bottom:32px">
+
+    <!-- 1.5 FORMS -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">1.5</span>
+        <span class="wf-section-title">FORMS — Input States</span>
+      </div>
+      <div class="wf-section-body">
+        <div class="form-grid">
+
+          <div class="form-field">
+            <label class="form-label">Label</label>
+            <input class="form-input" type="text" placeholder="Input text" readonly/>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Label</label>
+            <div class="form-input-wrap">
+              <input class="form-input" type="text" placeholder="Input with icon" readonly/>
+              <span class="form-input-icon">👤</span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Label</label>
+            <select class="form-select">
+              <option>Select an option</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Label</label>
+            <input class="form-input error" type="text" value="Input error" readonly/>
+            <span class="form-hint error">This field is required.</span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Label</label>
+            <textarea class="form-textarea" placeholder="Write your message..."></textarea>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Label</label>
+            <input class="form-input success" type="text" value="Input success" readonly/>
+            <span class="form-hint success">Looks good!</span>
+          </div>
+
+        </div>
+
+        <div class="form-checkbox-row">
+          <div class="form-checkbox"></div>
+          <span class="form-checkbox-label">I agree to the terms and conditions</span>
+        </div>
+
+        <div class="form-btns">
+          <button class="btn btn-primary" style="font-size:12px;padding:8px 18px">Submit</button>
+          <button class="btn btn-secondary" style="font-size:12px;padding:7px 18px">Cancel</button>
+        </div>
+
+        <div class="note-box">
+          <strong>States:</strong> Default · Focus (border darkens) · Error (red border + hint) · Success (green border + hint) · Disabled (greyed out)<br>
+          <strong>Django:</strong> Use crispy-forms or custom template tags for consistent rendering.
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.6 DASHBOARD -->
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">1.6</span>
+        <span class="wf-section-title">DASHBOARD LAYOUT</span>
+      </div>
+      <div class="wf-section-body" style="padding:16px">
+        <div class="dash-shell">
+          <!-- Topbar -->
+          <div class="dash-topbar">
+            <div class="dash-logo">SILVOL</div>
+            <div class="dash-topbar-right">
+              <div class="dash-topbar-title">Dashboard</div>
+              <div class="dash-bell">🔔</div>
+              <div class="dash-user-chip">
+                <div class="dash-avatar">U</div>
+                User Name ▾
+              </div>
+            </div>
+          </div>
+          <!-- Body -->
+          <div class="dash-body">
+            <!-- Sidebar -->
+            <div class="dash-sidebar">
+              <div class="dash-nav-item active">
+                <span class="dash-nav-icon">⊞</span> Dashboard
+              </div>
+              <div class="dash-nav-item">
+                <span class="dash-nav-icon">📚</span> My Learning
+              </div>
+              <div class="dash-nav-item">
+                <span class="dash-nav-icon">📅</span> Sessions
+              </div>
+              <div class="dash-nav-item">
+                <span class="dash-nav-icon">📁</span> Resources
+              </div>
+              <div class="dash-nav-item">
+                <span class="dash-nav-icon">✉</span> Messages
+              </div>
+              <div class="dash-nav-spacer"></div>
+              <div class="dash-nav-item">
+                <span class="dash-nav-icon">👤</span> Profile
+              </div>
+              <div class="dash-nav-item">
+                <span class="dash-nav-icon">⚙</span> Settings
+              </div>
+              <div class="dash-nav-spacer"></div>
+              <div class="dash-nav-logout">
+                <span class="dash-nav-icon">⏻</span> Log out
+              </div>
+            </div>
+            <!-- Main -->
+            <div class="dash-main">
+              <div class="dash-page-title">Dashboard</div>
+              <!-- Stats -->
+              <div class="dash-stat-row">
+                <div class="dash-stat">
+                  <div class="dash-stat-val">3</div>
+                  <div class="dash-stat-label">Courses in Progress</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-val">2</div>
+                  <div class="dash-stat-label">Upcoming Sessions</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-val">75%</div>
+                  <div class="dash-stat-label">Learning Progress</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-val">12</div>
+                  <div class="dash-stat-label">Badges Earned</div>
+                </div>
+              </div>
+              <!-- Sessions -->
+              <div class="dash-section-title">
+                Upcoming Sessions
+                <span class="dash-view-all">View all →</span>
+              </div>
+              <div class="dash-session-row">
+                <div class="dash-session-icon">📅</div>
+                <div class="dash-session-info">
+                  <div class="wf-line med"></div>
+                  <div class="wf-line short"></div>
+                </div>
+                <div class="dash-session-date">12 May 2025</div>
+                <div class="dash-session-btn">View</div>
+              </div>
+              <div class="dash-session-row">
+                <div class="dash-session-icon">📅</div>
+                <div class="dash-session-info">
+                  <div class="wf-line full"></div>
+                  <div class="wf-line med"></div>
+                </div>
+                <div class="dash-session-date">19 May 2025</div>
+                <div class="dash-session-btn">View</div>
+              </div>
+              <div class="dash-session-row">
+                <div class="dash-session-icon">📅</div>
+                <div class="dash-session-info">
+                  <div class="wf-line short"></div>
+                  <div class="wf-line full"></div>
+                </div>
+                <div class="dash-session-date">26 May 2025</div>
+                <div class="dash-session-btn">View</div>
+              </div>
+              <!-- Recommended -->
+              <div class="dash-section-title" style="margin-top:16px">
+                Recommended for You
+                <span class="dash-view-all">View all →</span>
+              </div>
+              <div class="dash-rec-grid">
+                <div class="dash-rec-card"></div>
+                <div class="dash-rec-card"></div>
+                <div class="dash-rec-card"></div>
+              </div>
+            </div>
+          </div><!-- end body -->
+        </div><!-- end shell -->
+        <div class="annotation">Layout shared across all roles — sidebar items change per role</div>
+      </div>
+    </div>
+
+  </div><!-- end row 3 -->
+
+  <!-- ROW 4: User Roles (full width) -->
+  <div class="wf-grid col-1">
+    <div class="wf-section">
+      <div class="wf-section-header">
+        <span class="wf-section-num">1.7</span>
+        <span class="wf-section-title">USER ROLES — Access Levels</span>
+      </div>
+      <div class="wf-section-body">
+        <div class="roles-grid">
+
+          <div class="role-card learner">
+            <div class="role-icon-wrap">🎓</div>
+            <div class="role-info">
+              <div class="role-name">Learner</div>
+              <div class="role-desc">Access learning programmes, sessions, resources and track personal progress.</div>
+              <div class="role-access">
+                <div class="role-access-item">My Learning</div>
+                <div class="role-access-item">Sessions</div>
+                <div class="role-access-item">Resources</div>
+                <div class="role-access-item">Profile</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="role-card tutor">
+            <div class="role-icon-wrap">🧑‍🏫</div>
+            <div class="role-info">
+              <div class="role-name">Tutor / Coach</div>
+              <div class="role-desc">Deliver sessions, manage cohorts, track learner progress and generate reports.</div>
+              <div class="role-access">
+                <div class="role-access-item">My Cohorts</div>
+                <div class="role-access-item">Sessions</div>
+                <div class="role-access-item">Reports</div>
+                <div class="role-access-item">Learners</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="role-card org">
+            <div class="role-icon-wrap">🏢</div>
+            <div class="role-info">
+              <div class="role-name">Organisation</div>
+              <div class="role-desc">Manage programmes, cohorts, learners and view impact reports for their contract.</div>
+              <div class="role-access">
+                <div class="role-access-item">Programmes</div>
+                <div class="role-access-item">Learners</div>
+                <div class="role-access-item">Reports</div>
+                <div class="role-access-item">Organisation Profile</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="role-card admin">
+            <div class="role-icon-wrap">🔐</div>
+            <div class="role-info">
+              <div class="role-name">Partner / Admin</div>
+              <div class="role-desc">Manage platform content, users, programmes, system settings and all reporting.</div>
+              <div class="role-access">
+                <div class="role-access-item">User Management</div>
+                <div class="role-access-item">Content Management</div>
+                <div class="role-access-item">System Settings</div>
+                <div class="role-access-item">Reports</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="note-box" style="margin-top:16px">
+          <strong>Django implementation:</strong> Roles implemented via Django Groups + custom permission decorators.
+          Each view checks <code>request.user.groups</code>. Sidebar and navbar rendered conditionally per role using template context.
+          Developer role = Django superuser (is_staff=True). Admin role = custom Group with elevated permissions.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page -->
+</body>
+</html>
