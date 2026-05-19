@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SILVOL — 4. Learner Dashboard Wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:       #111318;
+  --ink-2:     #3a3d45;
+  --ink-3:     #6b7080;
+  --ink-4:     #9aa0b0;
+  --rule:      #d4d8e2;
+  --rule-2:    #e8eaf0;
+  --bg:        #f4f5f8;
+  --white:     #ffffff;
+  --green:     #1a6b3a;
+  --green-l:   #e8f4ed;
+  --green-m:   #b8dfc8;
+  --green-d:   #155c30;
+  --green-nav: #1d3d28;
+  --purple:    #7c3aed;
+  --purple-l:  #f3e8ff;
+  --amber:     #d97706;
+  --amber-l:   #fef3c7;
+  --red:       #dc2626;
+  --blue:      #2563eb;
+  --blue-l:    #eff6ff;
+  --ff-mono: 'IBM Plex Mono', monospace;
+  --ff-sans: 'IBM Plex Sans', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg)}
+body{font-family:var(--ff-sans);color:var(--ink);font-size:13px;line-height:1.5;overflow-x:hidden}
+
+/* ── PAGE SHELL ── */
+.page{max-width:1440px;margin:0 auto;padding:36px 36px 60px}
+.doc-header{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:28px}
+.doc-title{font-family:var(--ff-mono);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.doc-sub{font-size:11px;color:var(--ink-3)}
+.doc-badge{display:inline-flex;align-items:center;font-family:var(--ff-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border:1.5px solid var(--rule);border-radius:4px;color:var(--ink-3);margin-top:10px}
+
+/* ── DASHBOARD FRAME ── */
+.dash-frame{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  grid-template-rows:auto 1fr;
+  border:2px solid var(--rule);
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--white);
+  box-shadow:0 4px 32px rgba(0,0,0,0.08);
+  min-height:880px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  background:var(--green-nav);
+  grid-row:1/-1;
+  display:flex;
+  flex-direction:column;
+  padding:0;
+}
+.sidebar-brand{
+  padding:20px 18px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.brand-dots{
+  display:flex;gap:4px;margin-bottom:8px;
+}
+.brand-dot{
+  width:8px;height:8px;border-radius:50%;
+}
+.brand-dot:nth-child(1){background:var(--green);}
+.brand-dot:nth-child(2){background:var(--green);opacity:.7;}
+.brand-dot:nth-child(3){background:var(--green);opacity:.4;}
+.brand-dot:nth-child(4){background:rgba(255,255,255,.15);}
+.brand-dot:nth-child(5){background:rgba(255,255,255,.15);}
+.brand-dot:nth-child(6){background:rgba(255,255,255,.15);}
+.brand-name{
+  font-family:var(--ff-mono);
+  font-size:18px;font-weight:700;
+  color:var(--white);letter-spacing:.04em;
+  margin-bottom:3px;
+}
+.brand-tagline{
+  font-size:9px;color:rgba(255,255,255,.4);
+  line-height:1.4;
+}
+.sidebar-nav{padding:16px 0;flex:1}
+.nav-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 18px;
+  font-size:12px;font-weight:500;
+  color:rgba(255,255,255,.55);
+  cursor:pointer;position:relative;
+  transition:all .15s;
+}
+.nav-item:hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.05);}
+.nav-item.active{
+  color:white;font-weight:700;
+  background:rgba(255,255,255,.1);
+}
+.nav-item.active::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--green);border-radius:0 2px 2px 0;
+}
+.nav-icon{font-size:15px;min-width:18px;text-align:center;opacity:.8;}
+.nav-item.active .nav-icon{opacity:1;}
+.nav-badge{
+  margin-left:auto;min-width:20px;height:20px;
+  background:var(--purple);color:white;
+  font-size:10px;font-weight:700;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 5px;
+}
+.nav-divider{height:1px;background:rgba(255,255,255,.07);margin:10px 18px;}
+.sidebar-bottom{padding:12px 0;border-top:1px solid rgba(255,255,255,.07);}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:var(--white);
+  border-bottom:1px solid var(--rule-2);
+  padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.topbar-welcome{}
+.topbar-greeting{
+  font-size:20px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:2px;
+}
+.topbar-sub{font-size:12px;color:var(--ink-3);}
+.topbar-right{display:flex;align-items:center;gap:14px;}
+.topbar-icon-btn{
+  position:relative;
+  width:36px;height:36px;
+  border:1.5px solid var(--rule);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;cursor:pointer;
+}
+.topbar-notif-badge{
+  position:absolute;top:-2px;right:-2px;
+  width:16px;height:16px;
+  background:var(--red);color:white;
+  font-size:9px;font-weight:700;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid white;
+}
+.topbar-user{
+  display:flex;align-items:center;gap:9px;
+  cursor:pointer;
+}
+.user-avatar{
+  width:36px;height:36px;
+  background:var(--green-m);
+  border:2px solid var(--green);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--green-d);
+}
+.user-info{}
+.user-name{font-size:12px;font-weight:700;color:var(--ink);}
+.user-role{font-size:10px;color:var(--ink-3);}
+.user-chevron{font-size:10px;color:var(--ink-4);}
+
+/* ── MAIN CONTENT ── */
+.main{
+  padding:20px 24px;
+  background:var(--bg);
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* ── SECTION HELPERS ── */
+.section-title{
+  font-size:14px;font-weight:700;color:var(--ink);
+  margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.view-all{font-size:11px;color:var(--green);font-weight:600;cursor:pointer;}
+.card{
+  background:var(--white);
+  border:1.5px solid var(--rule-2);
+  border-radius:10px;
+  padding:16px;
+}
+
+/* ── ROW 1: Programmes + Sessions + Progress ── */
+.row-1{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+
+/* Programmes */
+.prog-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.prog-card{
+  border:1.5px solid var(--rule-2);border-radius:8px;
+  padding:14px 12px;text-align:center;
+}
+.prog-icon-wrap{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin:0 auto 10px;
+}
+.prog-icon-wrap.green{background:var(--green-l);border:2px solid var(--green-m);}
+.prog-icon-wrap.purple{background:var(--purple-l);border:2px solid #d8b4fe;}
+.prog-name{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.prog-sub{font-size:9px;color:var(--ink-3);margin-bottom:8px;line-height:1.4;}
+.prog-bar-wrap{height:5px;background:var(--rule-2);border-radius:3px;margin-bottom:4px;}
+.prog-bar{height:5px;border-radius:3px;}
+.prog-bar.green{background:var(--green);}
+.prog-bar.purple{background:var(--purple);}
+.prog-pct{font-size:9px;color:var(--ink-3);text-align:left;margin-bottom:8px;}
+.prog-btn{
+  display:block;width:100%;padding:6px;text-align:center;
+  border-radius:5px;font-size:10px;font-weight:600;cursor:pointer;
+}
+.prog-btn.green{border:1.5px solid var(--green);color:var(--green);}
+.prog-btn.purple{border:1.5px solid var(--purple);color:var(--purple);}
+
+/* Sessions */
+.session-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 0;border-bottom:1px solid var(--rule-2);
+}
+.session-row:last-of-type{border-bottom:none;}
+.session-date-block{
+  flex-shrink:0;text-align:center;
+  background:var(--green-l);border:1.5px solid var(--green-m);
+  border-radius:7px;padding:6px 10px;min-width:44px;
+}
+.sess-month{font-size:8px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;}
+.sess-day{font-size:18px;font-weight:900;color:var(--green-d);line-height:1;}
+.session-info{flex:1;}
+.sess-title{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.sess-meta{font-size:9px;color:var(--ink-3);display:flex;align-items:center;gap:4px;margin-bottom:2px;}
+.sess-location{font-size:9px;color:var(--ink-3);display:flex;align-items:center;gap:4px;}
+.sess-badge{
+  flex-shrink:0;
+  font-size:9px;font-weight:700;
+  padding:3px 8px;border-radius:12px;
+}
+.sess-badge.soon{background:var(--green-l);color:var(--green-d);}
+.sess-badge.later{background:var(--blue-l);color:var(--blue);}
+.sess-badge.far{background:#f0fdf4;color:#166534;}
+.session-add-cal{
+  display:flex;align-items:center;gap:6px;
+  font-size:10px;color:var(--ink-3);padding-top:8px;cursor:pointer;
+}
+
+/* Progress panel */
+.progress-ring-wrap{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:16px;
+}
+.ring-svg{flex-shrink:0;}
+.ring-stats{display:flex;flex-direction:column;gap:6px;}
+.ring-stat{display:flex;align-items:center;gap:8px;}
+.ring-stat-num{font-family:var(--ff-mono);font-size:18px;font-weight:700;color:var(--ink);min-width:28px;}
+.ring-stat-label{font-size:10px;color:var(--ink-3);display:flex;align-items:center;gap:5px;}
+.ring-stat-icon{font-size:12px;}
+
+.skill-bars{margin-bottom:12px;}
+.skill-bar-title{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.skill-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.skill-name{font-size:10px;color:var(--ink-2);min-width:80px;}
+.skill-track{flex:1;height:6px;background:var(--rule-2);border-radius:3px;overflow:hidden;}
+.skill-fill{height:6px;border-radius:3px;}
+.skill-fill.g{background:var(--green);}
+.skill-fill.p{background:var(--purple);}
+.skill-pct{font-size:10px;color:var(--ink-3);min-width:30px;text-align:right;}
+
+.achievements-row{display:flex;gap:12px;}
+.achievement{text-align:center;flex:1;}
+.ach-badge{
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin:0 auto 6px;
+}
+.ach-badge.green{background:var(--green-l);border:2px solid var(--green-m);}
+.ach-badge.purple{background:var(--purple-l);border:2px solid #d8b4fe;}
+.ach-badge.amber{background:var(--amber-l);border:2px solid #fcd34d;}
+.ach-name{font-size:9.5px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.ach-date{font-size:8.5px;color:var(--ink-4);}
+
+/* ── ROW 2: Recommended + Right panel ── */
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+/* Recommended */
+.rec-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.rec-card{border:1.5px solid var(--rule-2);border-radius:8px;padding:12px;}
+.rec-label{font-size:8.5px;font-weight:600;color:var(--ink-3);margin-bottom:4px;}
+.rec-icon-wrap{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;margin-bottom:8px;
+}
+.rec-icon-wrap.green{background:var(--green-l);}
+.rec-icon-wrap.purple{background:var(--purple-l);}
+.rec-icon-wrap.amber{background:var(--amber-l);}
+.rec-title{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.rec-prog{font-size:9px;color:var(--ink-3);margin-bottom:6px;}
+.rec-bar-wrap{height:4px;background:var(--rule-2);border-radius:2px;margin-bottom:8px;}
+.rec-bar{height:4px;border-radius:2px;background:var(--green);}
+.rec-pct{font-size:8.5px;color:var(--ink-3);margin-bottom:8px;}
+.rec-btn{
+  display:block;width:100%;padding:5px;
+  text-align:center;border-radius:4px;
+  font-size:10px;font-weight:600;cursor:pointer;
+}
+.rec-btn.green{background:var(--white);border:1.5px solid var(--green);color:var(--green);}
+.rec-btn.purple{background:var(--white);border:1.5px solid var(--purple);color:var(--purple);}
+.rec-btn.amber{background:var(--white);border:1.5px solid var(--amber);color:var(--amber);}
+
+/* ── JOURNEY SECTION ── */
+.journey-grid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;}
+.journey-steps{display:flex;align-items:flex-start;gap:0;position:relative;padding-top:8px;}
+.journey-step{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;}
+.journey-step:not(:last-child)::after{
+  content:'';position:absolute;
+  top:16px;left:50%;width:100%;height:3px;
+  z-index:0;
+}
+.journey-step.done::after{background:var(--green);}
+.journey-step.active-step::after{background:var(--rule-2);}
+.journey-step.upcoming::after{background:var(--rule-2);}
+.step-bubble{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;z-index:1;position:relative;
+  flex-shrink:0;
+}
+.step-bubble.done{background:var(--green);color:white;}
+.step-bubble.active-b{background:var(--green);color:white;box-shadow:0 0 0 4px var(--green-m);}
+.step-bubble.upcoming{background:var(--rule-2);color:var(--ink-3);border:2px solid var(--rule);}
+.step-label{font-size:9.5px;font-weight:700;color:var(--ink);margin-top:8px;text-align:center;}
+.step-sub{font-size:8.5px;color:var(--ink-3);text-align:center;}
+
+.current-goal{
+  background:var(--green-l);border:1.5px solid var(--green-m);
+  border-radius:8px;padding:14px 16px;min-width:180px;
+}
+.goal-title{font-size:10px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.goal-desc{font-size:9.5px;color:var(--ink-2);line-height:1.5;margin-bottom:10px;}
+.goal-btn{
+  display:block;width:100%;padding:6px;
+  background:var(--green);color:white;
+  text-align:center;border-radius:5px;
+  font-size:10px;font-weight:700;border:none;cursor:pointer;
+}
+
+/* ── HELP PANEL ── */
+.help-panel{
+  background:var(--green-l);border:1.5px solid var(--green-m);
+  border-radius:10px;padding:14px;
+  display:flex;align-items:flex-start;gap:12px;
+}
+.help-content{flex:1;}
+.help-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.help-desc{font-size:10px;color:var(--ink-3);line-height:1.5;margin-bottom:10px;}
+.help-btn{
+  display:inline-block;padding:7px 16px;
+  background:var(--white);color:var(--green);
+  border:1.5px solid var(--green-m);border-radius:5px;
+  font-size:11px;font-weight:700;cursor:pointer;
+}
+.help-illus{
+  width:64px;height:64px;flex-shrink:0;
+  background:var(--green-m);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+}
+
+/* ── FOOTER STRIP ── */
+.footer-strip{
+  background:var(--white);
+  border:1.5px solid var(--rule-2);border-radius:10px;
+  padding:16px 20px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:0;align-items:center;
+}
+.footer-strip-item{
+  display:flex;align-items:center;gap:12px;
+  padding:0 20px;
+}
+.footer-strip-item:first-child{padding-left:0;}
+.footer-strip-item:last-child{padding-right:0;border-left:1px solid var(--rule-2);}
+.footer-strip-item:nth-child(2){border-left:1px solid var(--rule-2);}
+.fs-icon{font-size:24px;flex-shrink:0;}
+.fs-title{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:1px;}
+.fs-desc{font-size:10px;color:var(--ink-3);}
+.fs-streak{display:flex;align-items:center;gap:8px;}
+.fs-streak-num{font-family:var(--ff-mono);font-size:22px;font-weight:700;color:var(--ink);}
+.fs-streak-label{font-size:10px;color:var(--ink-3);}
+.fs-streak-fire{font-size:20px;}
+.fs-quote{font-size:11px;color:var(--ink-2);font-style:italic;line-height:1.5;}
+.fs-quote-attr{font-size:9.5px;color:var(--ink-4);margin-top:3px;}
+
+/* ── DOC NOTE ── */
+.doc-note{background:#fffbea;border:1.5px solid #f5d87a;border-radius:6px;padding:12px 18px;font-size:11px;color:#7a5a00;line-height:1.7;margin-top:20px;}
+.doc-note strong{font-weight:700;}
+.ann{font-family:var(--ff-mono);font-size:9px;color:var(--green);background:var(--green-l);border:1px solid var(--green-m);border-radius:3px;padding:2px 7px;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- DOC HEADER -->
+  <div class="doc-header">
+    <div class="doc-title">4. LEARNER DASHBOARD — WIREFRAME</div>
+    <div class="doc-sub">Dashboard home, My programmes, Upcoming sessions, Learning progress, Recommended next steps</div>
+    <div class="doc-badge">SILVOL v1 &nbsp;·&nbsp; Phase 1 &nbsp;·&nbsp; AUTH-007 / LEARN-009 / COM-016</div>
+  </div>
+
+  <!-- ══ DASHBOARD FRAME ══ -->
+  <div class="dash-frame">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-dots">
+          <div class="brand-dot"></div>
+          <div class="brand-dot"></div>
+          <div class="brand-dot"></div>
+          <div class="brand-dot"></div>
+          <div class="brand-dot"></div>
+          <div class="brand-dot"></div>
+        </div>
+        <div class="brand-name">SILVOL</div>
+        <div class="brand-tagline">Learning. Connecting. Empowering.</div>
+      </div>
+
+      <div class="sidebar-nav">
+        <div class="nav-item active">
+          <span class="nav-icon">🏠</span> Dashboard
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">📋</span> My Programmes
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">📚</span> My Learning
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">📅</span> Upcoming Sessions
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">📊</span> My Progress
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">📁</span> Resources
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">✉</span> Messages
+          <span class="nav-badge">2</span>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-item">
+          <span class="nav-icon">👤</span> My Profile
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">⚙</span> Settings
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="nav-divider"></div>
+        <div class="nav-item">
+          <span class="nav-icon">❓</span> Help Centre
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">⏻</span> Log out
+        </div>
+      </div>
+    </div>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-welcome">
+        <div class="topbar-greeting">Welcome back, Sarah! 👋</div>
+        <div class="topbar-sub">Keep learning. Keep growing. You're building your digital confidence.</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-icon-btn">
+          🔔
+          <div class="topbar-notif-badge">3</div>
+        </div>
+        <div class="topbar-icon-btn">💬</div>
+        <div class="topbar-user">
+          <div class="user-avatar">SA</div>
+          <div class="user-info">
+            <div class="user-name">Sarah Ahmed</div>
+            <div class="user-role">Learner</div>
+          </div>
+          <span class="user-chevron">▾</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- ── ROW 1: Programmes + Sessions + Progress ── -->
+      <div class="row-1">
+
+        <!-- My Programmes -->
+        <div class="card">
+          <div class="section-title">
+            My Programmes
+            <span class="view-all">View all</span>
+          </div>
+          <div class="prog-cards">
+            <div class="prog-card">
+              <div class="prog-icon-wrap green">🔗</div>
+              <div class="prog-name">SILVOL CONNECT</div>
+              <div class="prog-sub">Digital Confidence for Everyday Life</div>
+              <div class="prog-bar-wrap"><div class="prog-bar green" style="width:75%"></div></div>
+              <div class="prog-pct">75% complete</div>
+              <div class="prog-btn green">Continue Learning</div>
+            </div>
+            <div class="prog-card">
+              <div class="prog-icon-wrap purple">🤖</div>
+              <div class="prog-name">SILVOL AI ESSENTIALS</div>
+              <div class="prog-sub">AI Skills for Work and Life</div>
+              <div class="prog-bar-wrap"><div class="prog-bar purple" style="width:40%"></div></div>
+              <div class="prog-pct">40% complete</div>
+              <div class="prog-btn purple">Continue Learning</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Sessions -->
+        <div class="card">
+          <div class="section-title">
+            Upcoming Sessions
+            <span class="view-all">View all</span>
+          </div>
+
+          <div class="session-row">
+            <div class="session-date-block">
+              <div class="sess-month">MAY</div>
+              <div class="sess-day">16</div>
+            </div>
+            <div class="session-info">
+              <div class="sess-title">AI Basics: Getting Started</div>
+              <div class="sess-meta">📅 Friday, 16 May 2025 &nbsp;·&nbsp; 10:00 – 12:00</div>
+              <div class="sess-location">📍 Community Hub, Birmingham</div>
+            </div>
+            <div class="sess-badge soon">In 2 days</div>
+          </div>
+
+          <div class="session-row">
+            <div class="session-date-block">
+              <div class="sess-month">MAY</div>
+              <div class="sess-day">22</div>
+            </div>
+            <div class="session-info">
+              <div class="sess-title">Microsoft 365 Essentials</div>
+              <div class="sess-meta">📅 Thursday, 22 May 2025 &nbsp;·&nbsp; 14:00 – 16:00</div>
+              <div class="sess-location">💻 Online (Zoom)</div>
+            </div>
+            <div class="sess-badge later">In 8 days</div>
+          </div>
+
+          <div class="session-row">
+            <div class="session-date-block">
+              <div class="sess-month">MAY</div>
+              <div class="sess-day">30</div>
+            </div>
+            <div class="session-info">
+              <div class="sess-title">Staying Safe Online</div>
+              <div class="sess-meta">📅 Friday, 30 May 2025 &nbsp;·&nbsp; 10:00 – 12:00</div>
+              <div class="sess-location">📍 Community Hub, Birmingham</div>
+            </div>
+            <div class="sess-badge far">In 16 days</div>
+          </div>
+
+          <div class="session-add-cal">📅 Add to calendar</div>
+        </div>
+
+        <!-- Learning Progress -->
+        <div class="card">
+          <div class="section-title">
+            Learning Progress
+            <span class="view-all">View full progress</span>
+          </div>
+
+          <!-- Ring + stats -->
+          <div class="progress-ring-wrap">
+            <svg class="ring-svg" width="88" height="88" viewBox="0 0 88 88">
+              <circle cx="44" cy="44" r="36" fill="none" stroke="#e8eaf0" stroke-width="8"/>
+              <circle cx="44" cy="44" r="36" fill="none" stroke="#1a6b3a" stroke-width="8"
+                stroke-dasharray="226" stroke-dashoffset="72"
+                stroke-linecap="round" transform="rotate(-90 44 44)"/>
+              <text x="44" y="42" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" font-weight="700" fill="#111318">68%</text>
+              <text x="44" y="54" text-anchor="middle" font-family="IBM Plex Sans" font-size="8" fill="#9aa0b0">Overall</text>
+            </svg>
+            <div class="ring-stats">
+              <div class="ring-stat">
+                <div class="ring-stat-num">12</div>
+                <div class="ring-stat-label"><span class="ring-stat-icon">📚</span> Courses Enrolled</div>
+              </div>
+              <div class="ring-stat">
+                <div class="ring-stat-num">18</div>
+                <div class="ring-stat-label"><span class="ring-stat-icon">📅</span> Sessions Completed</div>
+              </div>
+              <div class="ring-stat">
+                <div class="ring-stat-num">8</div>
+                <div class="ring-stat-label"><span class="ring-stat-icon">🎖</span> Certificates Earned</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill bars -->
+          <div class="skill-bars">
+            <div class="skill-bar-title">Progress by Skill Area</div>
+            <div class="skill-row">
+              <span class="skill-name">Digital Basics</span>
+              <div class="skill-track"><div class="skill-fill g" style="width:80%"></div></div>
+              <span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">AI Literacy</span>
+              <div class="skill-track"><div class="skill-fill p" style="width:60%"></div></div>
+              <span class="skill-pct">60%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">Online Safety</span>
+              <div class="skill-track"><div class="skill-fill g" style="width:75%"></div></div>
+              <span class="skill-pct">75%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">Communication</span>
+              <div class="skill-track"><div class="skill-fill p" style="width:50%"></div></div>
+              <span class="skill-pct">50%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">Productivity</span>
+              <div class="skill-track"><div class="skill-fill g" style="width:65%"></div></div>
+              <span class="skill-pct">65%</span>
+            </div>
+          </div>
+
+          <!-- Achievements -->
+          <div class="section-title" style="margin-bottom:10px">
+            Achievements
+            <span class="view-all">View all</span>
+          </div>
+          <div class="achievements-row">
+            <div class="achievement">
+              <div class="ach-badge green">💻</div>
+              <div class="ach-name">Digital Explorer</div>
+              <div class="ach-date">Earned 10 Apr 2025</div>
+            </div>
+            <div class="achievement">
+              <div class="ach-badge purple">⭐</div>
+              <div class="ach-name">AI Beginner</div>
+              <div class="ach-date">Earned 2 May 2025</div>
+            </div>
+            <div class="achievement">
+              <div class="ach-badge amber">🏅</div>
+              <div class="ach-name">Community Learner</div>
+              <div class="ach-date">Earned 8 May 2025</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end row-1 -->
+
+      <!-- ── ROW 2: Recommended + Help ── -->
+      <div class="row-2">
+
+        <!-- Recommended Next Steps -->
+        <div class="card">
+          <div class="section-title">
+            Recommended Next Steps
+            <span style="font-size:11px;color:var(--ink-3);font-weight:400">Based on your progress and goals</span>
+          </div>
+          <div class="rec-cards">
+            <div class="rec-card">
+              <div class="rec-label">Continue your lesson</div>
+              <div class="rec-icon-wrap green">▶</div>
+              <div class="rec-title">Internet Basics</div>
+              <div class="rec-prog">SILVOL CONNECT</div>
+              <div class="rec-bar-wrap"><div class="rec-bar" style="width:60%"></div></div>
+              <div class="rec-pct">60% complete</div>
+              <div class="rec-btn green">Continue</div>
+            </div>
+            <div class="rec-card">
+              <div class="rec-label">Next step for you</div>
+              <div class="rec-icon-wrap purple">📖</div>
+              <div class="rec-title">AI Tools for Daily Tasks</div>
+              <div class="rec-prog">SILVOL AI ESSENTIALS</div>
+              <div style="height:18px;margin-bottom:8px"></div>
+              <div class="rec-btn purple">Start Lesson</div>
+            </div>
+            <div class="rec-card">
+              <div class="rec-label">Suggested for your goals</div>
+              <div class="rec-icon-wrap amber">🎯</div>
+              <div class="rec-title">Digital Confidence</div>
+              <div class="rec-prog">SILVOL CONNECT</div>
+              <div style="height:18px;margin-bottom:8px"></div>
+              <div class="rec-btn amber">View Course</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Need Help -->
+        <div class="help-panel">
+          <div class="help-content">
+            <div class="help-title">Need help?</div>
+            <div class="help-desc">Our support team and learning community are here for you.</div>
+            <div class="help-btn">Get Support</div>
+          </div>
+          <div class="help-illus">🎧</div>
+        </div>
+
+      </div><!-- end row-2 -->
+
+      <!-- ── LEARNING JOURNEY ── -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">
+          Your Learning Journey
+        </div>
+        <div class="journey-grid">
+          <div>
+            <div class="journey-steps">
+              <div class="journey-step done">
+                <div class="step-bubble done">✓</div>
+                <div class="step-label">Get Started</div>
+                <div class="step-sub">Completed</div>
+              </div>
+              <div class="journey-step done">
+                <div class="step-bubble done">✓</div>
+                <div class="step-label">Build Basics</div>
+                <div class="step-sub">Completed</div>
+              </div>
+              <div class="journey-step active-step">
+                <div class="step-bubble active-b">3</div>
+                <div class="step-label">Build Skills</div>
+                <div class="step-sub">In Progress</div>
+              </div>
+              <div class="journey-step upcoming">
+                <div class="step-bubble upcoming">4</div>
+                <div class="step-label">Apply & Grow</div>
+                <div class="step-sub">Upcoming</div>
+              </div>
+              <div class="journey-step upcoming">
+                <div class="step-bubble upcoming">5</div>
+                <div class="step-label">Lead & Inspire</div>
+                <div class="step-sub">Upcoming</div>
+              </div>
+            </div>
+          </div>
+          <div class="current-goal">
+            <div class="goal-title">Current Goal</div>
+            <div class="goal-desc">Complete 3 more lessons this week to stay on track!</div>
+            <div class="goal-btn">View My Goals</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FOOTER STRIP ── -->
+      <div class="footer-strip">
+        <div class="footer-strip-item">
+          <span class="fs-icon">💡</span>
+          <div>
+            <div class="fs-title">Learning tip of the day</div>
+            <div class="fs-desc">Small steps every day lead to big changes.</div>
+          </div>
+        </div>
+        <div class="footer-strip-item">
+          <span class="fs-icon">📅</span>
+          <div class="fs-streak">
+            <div>
+              <div class="fs-title">Streak</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:3px">
+                <div class="fs-streak-num">5 days</div>
+                <div class="fs-streak-fire">🔥</div>
+              </div>
+              <div class="fs-streak-label">You're on a roll!</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-strip-item">
+          <div>
+            <div class="fs-quote">"Every new skill you learn is a step toward a brighter future."</div>
+            <div class="fs-quote-attr">— The SILVOL Team</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end main -->
+  </div><!-- end dash-frame -->
+
+  <!-- IMPLEMENTATION NOTES -->
+  <div class="doc-note" style="margin-top:20px">
+    <strong>Django implementation notes:</strong><br>
+    Dashboard view at <code>/dashboard/</code> — login required. Data populated from: <code>LearnerProfile</code>, <code>Enrolment</code>, <code>LessonProgress</code>, <code>Session</code>, <code>Achievement</code> models.<br>
+    Progress ring: calculated server-side as (lessons_complete / lessons_total × 100). Skill area bars: per-category lesson completion aggregated in view context.<br>
+    Upcoming sessions: queryset filtered by <code>session.date ≥ today</code>, ordered by date, limited to 3. "Add to calendar" → iCal file download.<br>
+    Recommended next steps: algorithm based on last-accessed course + learning goals from LearnerProfile.<br>
+    Learning journey stages: defined as milestone thresholds in settings — configurable by admin.<br>
+    Streak: calculated from daily <code>LearnerActivity</code> log. Achievements: awarded automatically by Django signals on completion events.<br>
+    Notifications badge: unread count from <code>Notification</code> model. Messages badge: unread <code>Message</code> count.
+  </div>
+
+</div>
+</body>
+</html>
